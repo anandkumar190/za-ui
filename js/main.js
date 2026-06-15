@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // === DETECT TRAFFIC PLATFORM ===
+  let platform = 'Direct / Organic';
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = urlParams.get('utm_source') || urlParams.get('ref') || urlParams.get('source');
+  
+  if (utmSource) {
+    platform = utmSource;
+  } else if (document.referrer) {
+    const ref = document.referrer.toLowerCase();
+    if (ref.includes('instagram.com')) {
+      platform = 'Instagram';
+    } else if (ref.includes('facebook.com') || ref.includes('fb.com')) {
+      platform = 'Facebook';
+    } else if (ref.includes('youtube.com') || ref.includes('youtu.be')) {
+      platform = 'YouTube';
+    } else if (ref.includes('google.com')) {
+      platform = 'Google Search';
+    } else {
+      try {
+        platform = new URL(document.referrer).hostname;
+      } catch (e) {
+        platform = 'Referrer';
+      }
+    }
+  }
+  
+  if (platform !== 'Direct / Organic') {
+    sessionStorage.setItem('traffic_platform', platform);
+  }
+
   // === COUNTDOWN TIMER ===
   let totalSeconds = 29 * 60 + 59;
   const countMinEl = document.getElementById('countMin');
@@ -92,10 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // === FORM SUBMIT & DATABASE STORAGE ===
   const orderForm = document.getElementById('orderForm');
   if (orderForm) {
-    const nameInput = document.getElementById('orderName');
-    const telInput = document.getElementById('orderPhone');
-    const addressInput = document.getElementById('orderAddress');
-    const pinInput = document.getElementById('orderPin');
+    const nameInput = document.getElementById('orderName') || orderForm.querySelector('input[placeholder*="नाम"]') || orderForm.querySelector('input[type="text"]');
+    const telInput = document.getElementById('orderPhone') || orderForm.querySelector('input[type="tel"]') || orderForm.querySelector('input[placeholder*="मोबाइल"]');
+    const addressInput = document.getElementById('orderAddress') || orderForm.querySelector('input[placeholder*="पता"]');
+    const pinInput = document.getElementById('orderPin') || orderForm.querySelector('input[placeholder*="PIN"]') || orderForm.querySelectorAll('input[type="tel"]')[1];
     const errorMsg = document.getElementById('errorMsg');
     const successMsg = document.getElementById('successMsg');
 
@@ -186,18 +216,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // AJAX Submit to submit.php
+      const platformVal = sessionStorage.getItem('traffic_platform') || 'Direct / Organic';
       const params = new URLSearchParams();
       params.append('name', name);
       params.append('phone', phone);
       params.append('address', address);
       params.append('pin', pin);
+      params.append('platform', platformVal);
 
-      fetch('submit.php', {
+      fetch('submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: params
+        body: params.toString()
       })
       .then(response => response.json())
       .then(data => {

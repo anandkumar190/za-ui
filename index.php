@@ -566,7 +566,7 @@
         </div>
         <div class="form-group">
           <label>मोबाइल नंबर *</label>
-          <input type="tel" id="orderPhone" name="phone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" required>
+          <input type="tel" id="orderPhone" name="phone" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" inputmode="numeric" required>
         </div>
         <div class="form-group">
           <label>पूरा पता *</label>
@@ -574,7 +574,7 @@
         </div>
         <div class="form-group">
           <label>PIN / ZIP कोड *</label>
-          <input type="tel" id="orderPin" name="pin" placeholder="6 अंकों का PIN कोड" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" required>
+          <input type="tel" id="orderPin" name="pin" placeholder="6 अंकों का PIN कोड" maxlength="6" inputmode="numeric" required>
         </div>
         <button type="submit" class="form-submit">✅ ऑर्डर बुक करें — ₹1,499</button>
         <div class="error-msg" id="errorMsg"></div>
@@ -621,6 +621,6 @@
 </div>
 
 <!-- Main Script Reference -->
-<script src="js/main.js"></script>
+<script src="js/main.js?v=1.4"></script>
 </body>
 </html>

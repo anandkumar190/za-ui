@@ -52,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'export') {
     // Add UTF-8 BOM for proper excel encoding of Hindi names
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
     
-    fputcsv($output, ['Order ID', 'Date & Time', 'Name', 'Phone', 'Address', 'PIN Code', 'Status']);
+    fputcsv($output, ['Order ID', 'Date & Time', 'Name', 'Phone', 'Address', 'PIN Code', 'Platform', 'Device', 'IP Address', 'User Agent', 'Status']);
     
     $stmt = $pdo->query("SELECT * FROM inquiries ORDER BY id DESC");
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -63,6 +63,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'export') {
             $row['phone'],
             $row['address'],
             $row['pin'],
+            isset($row['platform']) ? $row['platform'] : 'N/A',
+            isset($row['device']) ? $row['device'] : 'N/A',
+            isset($row['ip_address']) ? $row['ip_address'] : 'N/A',
+            isset($row['user_agent']) ? $row['user_agent'] : 'N/A',
             $row['status']
         ]);
     }
@@ -380,6 +384,9 @@ try {
           <th>Mobile Number</th>
           <th>Full Address</th>
           <th>PIN Code</th>
+          <th>Platform</th>
+          <th>Device</th>
+          <th>IP Address</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -387,7 +394,7 @@ try {
       <tbody>
         <?php if (empty($leads)): ?>
           <tr>
-            <td colspan="8" style="text-align: center; padding: 40px; color: #9a7050;">
+            <td colspan="11" style="text-align: center; padding: 40px; color: #9a7050;">
               कोई पूछताछ डेटा उपलब्ध नहीं है। (No inquiries found.)
             </td>
           </tr>
@@ -402,6 +409,9 @@ try {
               </td>
               <td><?= htmlspecialchars($row['address']) ?></td>
               <td><code><?= htmlspecialchars($row['pin']) ?></code></td>
+              <td><span style="font-weight:600; color:var(--saffron-deep);"><?= htmlspecialchars(isset($row['platform']) ? $row['platform'] : 'Direct / Organic') ?></span></td>
+              <td><?= htmlspecialchars(isset($row['device']) ? $row['device'] : 'Desktop/Laptop') ?></td>
+              <td><small><code><?= htmlspecialchars(isset($row['ip_address']) ? $row['ip_address'] : 'N/A') ?></code></small></td>
               <td>
                 <span class="badge badge-<?= strtolower($row['status']) ?>">
                   <?= $row['status'] === 'Pending' ? 'Pending (लंबित)' : ($row['status'] === 'Confirmed' ? 'Confirmed' : 'Cancelled') ?>

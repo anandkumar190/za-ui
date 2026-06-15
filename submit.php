@@ -3,9 +3,10 @@ header('Content-Type: application/json');
 require_once 'config.php';
 
 // Accept both raw JSON and standard URL-encoded form POST inputs
-$input = json_decode(file_get_contents('php://input'), true);
-
-if (!$input) {
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+if (stripos($contentType, 'application/json') !== false) {
+    $input = json_decode(file_get_contents('php://input'), true);
+} else {
     $input = $_POST;
 }
 
@@ -13,6 +14,27 @@ $name = isset($input['name']) ? trim($input['name']) : '';
 $phone = isset($input['phone']) ? trim($input['phone']) : '';
 $address = isset($input['address']) ? trim($input['address']) : '';
 $pin = isset($input['pin']) ? trim($input['pin']) : '';
+$platform = isset($input['platform']) ? trim($input['platform']) : 'Direct / Organic';
+
+// Get client IP address
+$ipAddress = '';
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ipAddress = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ipAddress = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+} else {
+    $ipAddress = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+}
+$ipAddress = trim($ipAddress);
+
+// Get User Agent and detect device type
+$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+$device = 'Desktop/Laptop';
+if (preg_match('/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i', $userAgent)) {
+    $device = 'Tablet';
+} elseif (preg_match('/(up\.browser|up\.link|mmp|symbian|smartphone|midp|wap|phone|android|iemobile|iphone|ipad|ipod|blackberry|nokia|htc|motorola|webos)/i', $userAgent)) {
+    $device = 'Mobile';
+}
 
 // 1. Basic empty check
 if (empty($name) || empty($phone) || empty($address) || empty($pin)) {
@@ -33,13 +55,17 @@ if (!preg_match('/^\d{6}$/', $pin)) {
 }
 
 try {
-    // Insert into database
-    $stmt = $pdo->prepare("INSERT INTO inquiries (name, phone, address, pin, status) VALUES (:name, :phone, :address, :pin, 'Pending')");
+    // Insert into database with tracking fields
+    $stmt = $pdo->prepare("INSERT INTO inquiries (name, phone, address, pin, ip_address, platform, user_agent, device, status) VALUES (:name, :phone, :address, :pin, :ip_address, :platform, :user_agent, :device, 'Pending')");
     $result = $stmt->execute([
         ':name' => htmlspecialchars($name, ENT_QUOTES, 'UTF-8'),
         ':phone' => htmlspecialchars($phone, ENT_QUOTES, 'UTF-8'),
         ':address' => htmlspecialchars($address, ENT_QUOTES, 'UTF-8'),
-        ':pin' => htmlspecialchars($pin, ENT_QUOTES, 'UTF-8')
+        ':pin' => htmlspecialchars($pin, ENT_QUOTES, 'UTF-8'),
+        ':ip_address' => htmlspecialchars($ipAddress, ENT_QUOTES, 'UTF-8'),
+        ':platform' => htmlspecialchars($platform, ENT_QUOTES, 'UTF-8'),
+        ':user_agent' => htmlspecialchars($userAgent, ENT_QUOTES, 'UTF-8'),
+        ':device' => htmlspecialchars($device, ENT_QUOTES, 'UTF-8')
     ]);
     
     if ($result) {

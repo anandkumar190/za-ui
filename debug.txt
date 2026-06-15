@@ -1,0 +1,12 @@
+[2026-06-15 14:29:09] Method: GET | Content-Type: N/A | Raw:  | POST: Array
+(
+)
+
+[2026-06-15 14:30:12] Method: POST | Content-Type: application/x-www-form-urlencoded | Raw: name=Anand+Kumar&phone=9555335200&address=43%2Cshanti+encalve&pin=122506 | POST: Array
+(
+    [name] => Anand Kumar
+    [phone] => 9555335200
+    [address] => 43,shanti encalve
+    [pin] => 122506
+)
+
