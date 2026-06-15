@@ -26,7 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   if (platform !== 'Direct / Organic') {
-    sessionStorage.setItem('traffic_platform', platform);
+    try {
+      sessionStorage.setItem('traffic_platform', platform);
+    } catch (e) {
+      console.warn('sessionStorage is blocked:', e);
+    }
   }
 
   // === COUNTDOWN TIMER ===
@@ -216,7 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // AJAX Submit to submit.php
-      const platformVal = sessionStorage.getItem('traffic_platform') || 'Direct / Organic';
+      let platformVal = 'Direct / Organic';
+      try {
+        platformVal = sessionStorage.getItem('traffic_platform') || 'Direct / Organic';
+      } catch (e) {
+        console.warn('sessionStorage is blocked:', e);
+      }
       const params = new URLSearchParams();
       params.append('name', name);
       params.append('phone', phone);
@@ -261,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // === ADMIN REDIRECT ===
-  const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('admin') === 'true') {
     window.location.href = 'admin.php';
     return;
@@ -272,8 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmYesBtn = document.getElementById('confirmYesBtn');
   const confirmNoBtn = document.getElementById('confirmNoBtn');
 
-  if (confirmPopup) {
-    const isConfirmed = localStorage.getItem('ojas_age_confirmed');
+  if (confirmPopup && confirmYesBtn && confirmNoBtn) {
+    let isConfirmed = 'false';
+    try {
+      isConfirmed = localStorage.getItem('ojas_age_confirmed');
+    } catch (e) {
+      console.warn('localStorage is blocked:', e);
+    }
+
     if (isConfirmed === 'true') {
       confirmPopup.classList.add('hidden');
     } else {
@@ -281,7 +295,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     confirmYesBtn.addEventListener('click', () => {
-      localStorage.setItem('ojas_age_confirmed', 'true');
+      try {
+        localStorage.setItem('ojas_age_confirmed', 'true');
+      } catch (e) {
+        console.warn('localStorage is blocked:', e);
+      }
       confirmPopup.classList.add('hidden');
       document.body.classList.remove('modal-open');
     });

@@ -9,6 +9,7 @@ if (stripos($contentType, 'application/json') !== false) {
 } else {
     $input = $_POST;
 }
+$secChUa = isset($_SERVER['HTTP_SEC_CH_UA']) ? $_SERVER['HTTP_SEC_CH_UA'] : '';
 
 $name = isset($input['name']) ? trim($input['name']) : '';
 $phone = isset($input['phone']) ? trim($input['phone']) : '';
@@ -56,7 +57,7 @@ if (!preg_match('/^\d{6}$/', $pin)) {
 
 try {
     // Insert into database with tracking fields
-    $stmt = $pdo->prepare("INSERT INTO inquiries (name, phone, address, pin, ip_address, platform, user_agent, device, status) VALUES (:name, :phone, :address, :pin, :ip_address, :platform, :user_agent, :device, 'Pending')");
+    $stmt = $pdo->prepare("INSERT INTO inquiries (name, phone, address, pin, ip_address, platform, user_agent, device, HTTP_SEC_CH_UA, status) VALUES (:name, :phone, :address, :pin, :ip_address, :platform, :user_agent, :device, :http_sec_ch_ua, 'Pending')");
     $result = $stmt->execute([
         ':name' => htmlspecialchars($name, ENT_QUOTES, 'UTF-8'),
         ':phone' => htmlspecialchars($phone, ENT_QUOTES, 'UTF-8'),
@@ -65,7 +66,8 @@ try {
         ':ip_address' => htmlspecialchars($ipAddress, ENT_QUOTES, 'UTF-8'),
         ':platform' => htmlspecialchars($platform, ENT_QUOTES, 'UTF-8'),
         ':user_agent' => htmlspecialchars($userAgent, ENT_QUOTES, 'UTF-8'),
-        ':device' => htmlspecialchars($device, ENT_QUOTES, 'UTF-8')
+        ':device' => htmlspecialchars($device, ENT_QUOTES, 'UTF-8'),
+        ':http_sec_ch_ua' => htmlspecialchars($secChUa, ENT_QUOTES, 'UTF-8')
     ]);
     
     if ($result) {

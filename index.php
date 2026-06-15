@@ -621,6 +621,6 @@
 </div>
 
 <!-- Main Script Reference -->
-<script src="js/main.js?v=1.4"></script>
+<script src="js/main.js?v=1.6"></script>
 </body>
 </html>
