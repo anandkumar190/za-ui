@@ -1,750 +1,46 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --saffron: #E07B2A;
-    --saffron-deep: #C4611A;
-    --gold: #F5C542;
-    --cream: #FFF8EE;
-    --dark: #1A0F00;
-    --brown: #3D1F00;
-    --green: #2D6A4F;
-    --green-light: #52B788;
-    --white: #FFFFFF;
-    --shadow: 0 8px 32px rgba(224,123,42,0.18);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला। 100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य सुधारने के लिए।">
+  <meta name="keywords" content="Ojas, Ayurvedic Capsule, Mens Health, Stamina, Strength, Ashwagandha, Safed Musli, Zaviora Healthcare">
+  <meta name="author" content="Zaviora Healthcare">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
+  <meta property="og:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
+  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
+  <meta property="twitter:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
+  <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
-
-  /* ── ANNOUNCEMENT BAR ── */
-  .announce-bar {
-    background: linear-gradient(90deg, var(--green) 0%, var(--green-light) 100%);
-    color: white;
-    text-align: center;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .announce-bar span { color: var(--gold); }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--white);
-    border-bottom: 3px solid var(--saffron);
-    padding: 14px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  }
-
-  .logo-area { display: flex; align-items: center; gap: 16px; }
-  .logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--saffron-deep);
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-  .logo-text span { color: var(--green); }
-  .logo-badge {
-    background: #f0f5ff;
-    border: 1px solid #cdd9f5;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 11px;
-    color: #1a3c8f;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .header-btn {
-    background: linear-gradient(135deg, var(--saffron), var(--saffron-deep));
-    color: white;
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(224,123,42,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .header-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,123,42,0.5); }
-
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #1A0F00 0%, #3D1F00 50%, #5C2E00 100%);
-    padding: 60px 5% 50px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(224,123,42,0.15) 0%, transparent 70%);
-  }
-  .hero-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .hero-tag {
-    display: inline-block;
-    background: rgba(245,197,66,0.15);
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    border-radius: 50px;
-    padding: 5px 16px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    color: var(--white);
-    line-height: 1.25;
-    margin-bottom: 10px;
-  }
-  .hero h1 em { color: var(--gold); font-style: normal; }
-  .hero-sub {
-    font-size: 16px;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 28px;
-    line-height: 1.7;
-  }
-  .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
-  .pill {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    border-radius: 50px;
-    padding: 6px 14px;
-    font-size: 13px;
-  }
-  .pill.green { background: rgba(45,106,79,0.4); border-color: var(--green-light); color: var(--green-light); }
-
-  .hero-cta-wrap { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark);
-    font-weight: 800;
-    font-size: 16px;
-    padding: 14px 32px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 6px 24px rgba(224,123,42,0.5);
-    transition: transform 0.2s;
-    border: none; cursor: pointer;
-    font-family: inherit;
-  }
-  .btn-primary:hover { transform: translateY(-3px); }
-  .hero-price { color: rgba(255,255,255,0.6); font-size: 14px; }
-  .hero-price strong { color: var(--gold); font-size: 22px; }
-  .hero-price s { color: rgba(255,255,255,0.4); }
-
-  .hero-img-wrap {
-    display: flex; flex-direction: column; gap: 16px; align-items: center;
-  }
-  .hero-img-wrap img {
-    width: 100%; max-width: 360px; border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
-  .hero-stat-row {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; width: 100%;
-  }
-  .hero-stat {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 12px 8px;
-    text-align: center;
-  }
-  .hero-stat-num { font-size: 20px; font-weight: 800; color: var(--gold); }
-  .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
-
-  /* ── SECTION BASE ── */
-  section { padding: 60px 5%; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-tag {
-    display: inline-block;
-    color: var(--saffron);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 3.5vw, 40px);
-    color: var(--dark);
-    line-height: 1.3;
-    margin-bottom: 12px;
-  }
-  .section-title span { color: var(--saffron); }
-  .section-sub { color: #6b4c2a; font-size: 15px; line-height: 1.7; max-width: 620px; }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--saffron), transparent);
-    border: none; margin: 0;
-  }
-
-  /* ── BENEFITS ── */
-  .benefits-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px; margin-top: 40px;
-  }
-  .benefit-card {
-    background: white;
-    border-radius: 20px;
-    padding: 32px 28px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    border: 1px solid rgba(224,123,42,0.12);
-    transition: transform 0.25s, box-shadow 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .benefit-card::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--saffron), var(--gold));
-  }
-  .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(224,123,42,0.15); }
-  .benefit-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px;
-    margin-bottom: 20px;
-  }
-  .benefit-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--brown); }
-  .benefit-card p { font-size: 14px; color: #7a5c3a; line-height: 1.65; }
-
-  /* ── INGREDIENTS ── */
-  .ingredients-section { background: var(--dark); }
-  .ingredients-section .section-title { color: white; }
-  .ingredients-section .section-tag { color: var(--gold); }
-  .ingredients-section .section-sub { color: rgba(255,255,255,0.6); }
-  .herbs-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px; margin-top: 40px;
-  }
-  .herb-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(245,197,66,0.2);
-    border-radius: 16px;
-    padding: 24px 20px;
-    text-align: center;
-    transition: background 0.3s, transform 0.25s;
-  }
-  .herb-card:hover {
-    background: rgba(245,197,66,0.08);
-    transform: translateY(-4px);
-  }
-  .herb-emoji { font-size: 40px; margin-bottom: 12px; }
-  .herb-card h3 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
-  .herb-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-
-  /* ── TIMELINE ── */
-  .timeline-section { background: linear-gradient(135deg, #fff8ee 0%, #ffe8c8 100%); }
-  .timeline-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0; margin-top: 48px;
-    position: relative;
-  }
-  .timeline-grid::before {
-    content: '';
-    position: absolute; top: 48px; left: 10%; right: 10%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--saffron), var(--gold));
-    z-index: 0;
-  }
-  .timeline-step {
-    text-align: center; padding: 0 20px;
-    position: relative; z-index: 1;
-  }
-  .step-num {
-    width: 72px; height: 72px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    border-radius: 50%; border: 4px solid var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; color: white;
-    margin: 0 auto 20px;
-    box-shadow: 0 4px 16px rgba(224,123,42,0.4);
-  }
-  .step-days {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-weight: 700;
-    color: var(--saffron-deep); margin-bottom: 10px;
-  }
-  .timeline-step p { font-size: 13px; color: #7a5c3a; line-height: 1.65; }
-
-  /* ── FEATURES ROW ── */
-  .features-row {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px; margin-top: 40px;
-  }
-  .feature-box {
-    display: flex; align-items: flex-start; gap: 16px;
-    background: white; border-radius: 16px;
-    padding: 24px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    border: 1px solid rgba(224,123,42,0.1);
-    transition: transform 0.2s;
-  }
-  .feature-box:hover { transform: translateY(-4px); }
-  .feature-icon {
-    font-size: 32px; flex-shrink: 0;
-    width: 52px; height: 52px;
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .feature-box h3 { font-size: 15px; font-weight: 700; color: var(--brown); margin-bottom: 6px; }
-  .feature-box p { font-size: 13px; color: #9a7050; line-height: 1.6; }
-
-  /* ── TESTIMONIALS ── */
-  .testimonials-section { background: #1a0f00; }
-  .testimonials-section .section-title { color: white; }
-  .testimonials-section .section-tag { color: var(--gold); }
-  .testi-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px; margin-top: 40px;
-  }
-  .testi-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(245,197,66,0.15);
-    border-radius: 20px;
-    padding: 28px 24px;
-    transition: background 0.3s;
-  }
-  .testi-card:hover { background: rgba(245,197,66,0.07); }
-  .stars { color: var(--gold); font-size: 18px; margin-bottom: 12px; letter-spacing: 2px; }
-  .testi-text { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-  .testi-author {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .testi-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: white; font-weight: 800; flex-shrink: 0;
-  }
-  .testi-name { font-weight: 700; color: var(--gold); font-size: 15px; }
-  .testi-city { font-size: 12px; color: rgba(255,255,255,0.4); }
-
-  /* ── PRICING ── */
-  .pricing-section {
-    background: linear-gradient(135deg, #1A0F00 0%, #3D1F00 100%);
-    text-align: center;
-  }
-  .pricing-section .section-title { color: white; }
-  .pricing-section .section-tag { color: var(--gold); }
-
-  .price-card {
-    background: rgba(255,255,255,0.07);
-    border: 2px solid var(--gold);
-    border-radius: 24px;
-    max-width: 480px; margin: 40px auto 0;
-    padding: 40px 36px;
-    position: relative; overflow: hidden;
-  }
-  .price-badge {
-    position: absolute; top: -1px; right: 28px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark);
-    font-weight: 800; font-size: 14px;
-    padding: 6px 18px;
-    border-radius: 0 0 12px 12px;
-  }
-  .price-original { color: rgba(255,255,255,0.4); font-size: 18px; text-decoration: line-through; margin-bottom: 6px; }
-  .price-current {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; color: var(--gold);
-    line-height: 1;
-  }
-  .price-current span { font-size: 36px; }
-  .price-save {
-    display: inline-block;
-    background: rgba(45,106,79,0.4); border: 1px solid var(--green-light);
-    color: var(--green-light);
-    padding: 4px 14px; border-radius: 50px;
-    font-size: 13px; font-weight: 700;
-    margin: 12px 0 24px;
-  }
-  .price-features { text-align: left; margin-bottom: 28px; }
-  .price-features li {
-    list-style: none; padding: 8px 0;
-    color: rgba(255,255,255,0.75); font-size: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .price-features li::before { content: '✓'; color: var(--green-light); font-weight: 800; font-size: 16px; }
-
-  .btn-order {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark);
-    font-weight: 800; font-size: 18px;
-    padding: 16px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(224,123,42,0.5);
-    transition: transform 0.2s;
-    border: none; cursor: pointer;
-    font-family: inherit; width: 100%;
-    justify-content: center;
-  }
-  .btn-order:hover { transform: translateY(-3px); }
-
-  /* ── ORDER FORM ── */
-  #order-form { background: var(--cream); }
-  .form-wrap {
-    background: white;
-    border-radius: 24px;
-    padding: 48px 40px;
-    max-width: 560px; margin: 40px auto 0;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-    border: 1px solid rgba(224,123,42,0.15);
-  }
-  .form-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px; color: var(--dark);
-    margin-bottom: 6px; text-align: center;
-  }
-  .form-subtitle { text-align: center; color: #9a7050; font-size: 14px; margin-bottom: 28px; }
-  .form-group { margin-bottom: 18px; }
-  .form-group label {
-    display: block; font-size: 13px; font-weight: 700;
-    color: var(--brown); margin-bottom: 6px;
-  }
-  .form-group input {
-    width: 100%; padding: 13px 16px;
-    border: 2px solid #e8d5be; border-radius: 12px;
-    font-size: 15px; font-family: inherit;
-    color: var(--dark); background: #fdf6ee;
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  .form-group input:focus { border-color: var(--saffron); background: white; }
-  .form-group input::placeholder { color: #c4a57e; }
-  .form-submit {
-    width: 100%; padding: 16px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark); border: none;
-    border-radius: 12px; font-size: 17px;
-    font-weight: 800; cursor: pointer;
-    font-family: inherit;
-    box-shadow: 0 6px 20px rgba(224,123,42,0.4);
-    transition: transform 0.2s;
-    margin-top: 8px;
-  }
-  .form-submit:hover { transform: translateY(-2px); }
-  .form-assure {
-    display: flex; justify-content: center; gap: 20px;
-    margin-top: 16px; flex-wrap: wrap;
-  }
-  .assure-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--green); font-weight: 600; }
-
-  /* ── CERTIFICATIONS ── */
-  .certs-section { background: white; }
-  .certs-grid {
-    display: flex; flex-wrap: wrap; gap: 16px;
-    justify-content: center; margin-top: 32px;
-  }
-  .cert-badge {
-    background: #f0f8f4; border: 2px solid #c0e8d5;
-    border-radius: 12px; padding: 14px 20px;
-    text-align: center; min-width: 120px;
-  }
-  .cert-badge .cert-icon { font-size: 28px; margin-bottom: 6px; }
-  .cert-badge p { font-size: 12px; font-weight: 700; color: var(--green); }
-
-  /* ── STICKY BOTTOM BAR ── */
-  .sticky-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: var(--dark);
-    border-top: 2px solid var(--saffron);
-    padding: 12px 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    z-index: 999; gap: 16px;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
-  }
-  .countdown-wrap { display: flex; align-items: center; gap: 12px; }
-  .countdown-label { color: rgba(255,255,255,0.6); font-size: 12px; white-space: nowrap; }
-  .countdown-timer { display: flex; gap: 8px; }
-  .countdown-block { text-align: center; }
-  .countdown-num {
-    display: block;
-    background: var(--saffron);
-    color: white;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    width: 44px; border-radius: 6px;
-    line-height: 1.2; padding: 2px 0;
-  }
-  .countdown-unit { font-size: 10px; color: rgba(255,255,255,0.5); }
-  .sticky-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark); font-weight: 800;
-    font-size: 15px; padding: 12px 28px;
-    border-radius: 50px; text-decoration: none;
-    box-shadow: 0 4px 16px rgba(224,123,42,0.5);
-    white-space: nowrap; border: none; cursor: pointer;
-    font-family: inherit;
-    transition: transform 0.2s;
-  }
-  .sticky-btn:hover { transform: scale(1.04); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #0d0700;
-    color: rgba(255,255,255,0.45);
-    text-align: center;
-    padding: 24px 5% 80px;
-    font-size: 12px;
-    line-height: 1.8;
-  }
-
-  /* ── SUCCESS MESSAGE ── */
-  .success-msg {
-    display: none;
-    background: linear-gradient(135deg, var(--green), var(--green-light));
-    color: white;
-    border-radius: 12px;
-    padding: 20px 24px;
-    text-align: center;
-    font-size: 16px; font-weight: 700;
-    margin-top: 16px;
-  }
-
-  /* ── SCROLL ANIMATIONS ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── ALTERNATING IMAGE SECTIONS ── */
-  .alt-section {
-    padding: 0;
-    overflow: hidden;
-  }
-  .alt-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 420px;
-    align-items: stretch;
-  }
-  .alt-row.reverse { direction: rtl; }
-  .alt-row.reverse > * { direction: ltr; }
-
-  .alt-img-block {
-    position: relative;
-    overflow: hidden;
-    min-height: 380px;
-  }
-  .alt-img-block img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-  .alt-img-block:hover img { transform: scale(1.04); }
-
-  /* Pill/badge overlay on image */
-  .alt-img-badge {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(224,123,42,0.92);
-    color: white;
-    font-weight: 800;
-    font-size: 13px;
-    padding: 8px 18px;
-    border-radius: 50px;
-    backdrop-filter: blur(8px);
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  }
-
-  .alt-content-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 56px 52px;
-    background: var(--cream);
-  }
-  .alt-content-block.dark-bg {
-    background: var(--dark);
-  }
-  .alt-content-block.dark-bg .alt-title { color: white; }
-  .alt-content-block.dark-bg .alt-title span { color: var(--gold); }
-  .alt-content-block.dark-bg .alt-desc { color: rgba(255,255,255,0.68); }
-  .alt-content-block.green-bg {
-    background: linear-gradient(135deg, #1a3a2a 0%, #2D6A4F 100%);
-  }
-  .alt-content-block.green-bg .alt-title { color: white; }
-  .alt-content-block.green-bg .alt-title span { color: var(--gold); }
-  .alt-content-block.green-bg .alt-desc { color: rgba(255,255,255,0.68); }
-  .alt-content-block.warm-bg {
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  }
-
-  .alt-tag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 12px;
-    display: block;
-  }
-  .alt-content-block.dark-bg .alt-tag,
-  .alt-content-block.green-bg .alt-tag { color: var(--gold); }
-
-  .alt-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 2.8vw, 36px);
-    line-height: 1.3;
-    color: var(--dark);
-    margin-bottom: 16px;
-  }
-  .alt-title span { color: var(--saffron); }
-  .alt-desc {
-    font-size: 15px;
-    color: #6b4c2a;
-    line-height: 1.78;
-    margin-bottom: 28px;
-  }
-  .alt-points {
-    list-style: none;
-    margin-bottom: 30px;
-  }
-  .alt-points li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #5a3e1b;
-    padding: 7px 0;
-    border-bottom: 1px solid rgba(224,123,42,0.1);
-    font-weight: 600;
-  }
-  .alt-content-block.dark-bg .alt-points li,
-  .alt-content-block.green-bg .alt-points li { color: rgba(255,255,255,0.78); border-bottom-color: rgba(255,255,255,0.1); }
-  .alt-points li::before {
-    content: '✦';
-    color: var(--saffron);
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-  .alt-content-block.dark-bg .alt-points li::before,
-  .alt-content-block.green-bg .alt-points li::before { color: var(--gold); }
-
-  .alt-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: var(--dark);
-    font-weight: 800;
-    font-size: 14px;
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 6px 20px rgba(224,123,42,0.4);
-    transition: transform 0.2s;
-    align-self: flex-start;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .alt-cta:hover { transform: translateY(-3px); }
-
-  /* Small 200px image strip inside content side */
-  .alt-mini-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-    margin-bottom: 24px;
-    flex-shrink: 0;
-  }
-  .alt-content-inner-flex {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .alt-content-text { flex: 1; min-width: 180px; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .alt-row, .alt-row.reverse {
-      grid-template-columns: 1fr;
-      direction: ltr;
-    }
-    .alt-img-block { min-height: 260px; }
-    .alt-content-block { padding: 36px 24px; }
-    .alt-mini-img { width: 140px; height: 140px; }
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-    .hero-img-wrap { order: -1; }
-    .hero-img-wrap img { max-width: 280px; }
-    .timeline-grid::before { display: none; }
-    .timeline-grid { gap: 24px; }
-    .form-wrap { padding: 32px 24px; }
-    .sticky-bar { flex-wrap: wrap; }
-    header { flex-direction: column; text-align: center; }
-    .price-current { font-size: 56px; }
-  }
-  @media (max-width: 480px) {
-    section { padding: 48px 4%; }
-    .hero { padding: 40px 4%; }
-  }
-</style>
+  <!-- Fonts & External Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- AGE VERIFICATION POPUP -->
+<div class="confirm-popup" id="confirmPopup">
+  <div class="confirm-card">
+    <div class="confirm-logo">🌿</div>
+    <h2>⚠️ महत्वपूर्ण पुष्टि (Verification Required)</h2>
+    <p>इस वेबसाइट में पुरुषों के स्वास्थ्य और आयुर्वेदिक कल्याण से संबंधित सामग्री है। आगे बढ़ने के लिए कृपया पुष्टि करें कि आपकी आयु 18 वर्ष या उससे अधिक है।</p>
+    <div class="confirm-buttons">
+      <button class="confirm-btn yes" id="confirmYesBtn">हाँ, मेरी आयु 18+ है</button>
+      <button class="confirm-btn no" id="confirmNoBtn">बाहर निकलें (Exit)</button>
+    </div>
+    <div class="confirm-warning">OJAS+ by Zaviora Healthcare 🇮🇳</div>
+  </div>
+</div>
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
@@ -790,7 +86,7 @@
     </div>
     <div class="hero-img-wrap">
       <img src="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp" 
-           alt="OJAS + Capsule Doctor">
+           alt="OJAS + Capsule Doctor Image">
       <div class="hero-stat-row">
         <div class="hero-stat">
           <div class="hero-stat-num">14+</div>
@@ -914,15 +210,10 @@
 
 <hr class="divider">
 
-<!-- ══════════════════════════════════════════
-     ALTERNATING IMAGE FEATURE SECTIONS
-     4 sections · alternate layout · images 600×300 full + 200px mini
-     ══════════════════════════════════════════ -->
-
+<!-- ALTERNATING IMAGE FEATURE SECTIONS -->
 <!-- SECTION A — Image LEFT · Content RIGHT (dark bg) -->
 <section class="alt-section">
   <div class="alt-row fade-up">
-    <!-- Full 600×300 image block -->
     <div class="alt-img-block">
       <img
         src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop&auto=format"
@@ -930,7 +221,6 @@
         width="600" height="600">
       <div class="alt-img-badge">✦ ZAVIORA HEALTHCARE</div>
     </div>
-    <!-- Content right -->
     <div class="alt-content-block dark-bg">
       <span class="alt-tag">🌿 Natural Power</span>
       <h2 class="alt-title">शरीर की ताकत को<br><span>नई ऊंचाई दें</span></h2>
@@ -946,10 +236,9 @@
   </div>
 </section>
 
-<!-- SECTION B — Content LEFT (warm bg + 200px mini) · Image RIGHT (full) -->
+<!-- SECTION B — Content LEFT (warm bg) · Image RIGHT -->
 <section class="alt-section">
   <div class="alt-row fade-up">
-    <!-- Content left with 200px mini image -->
     <div class="alt-content-block warm-bg">
       <span class="alt-tag">⚡ Energy & Vitality</span>
       <div class="alt-content-inner-flex">
@@ -970,7 +259,6 @@
       </ul>
       <a href="#order-form" class="alt-cta">🛒 ORDER NOW — ₹1,499</a>
     </div>
-    <!-- Full image right -->
     <div class="alt-img-block">
       <img
         src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600&h=600&fit=crop&auto=format"
@@ -981,10 +269,9 @@
   </div>
 </section>
 
-<!-- SECTION C — Image LEFT (full 600px) · Content RIGHT (green bg) -->
+<!-- SECTION C — Image LEFT · Content RIGHT (green bg) -->
 <section class="alt-section">
   <div class="alt-row fade-up">
-    <!-- Full image left -->
     <div class="alt-img-block">
       <img
         src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&auto=format"
@@ -992,7 +279,6 @@
         width="600" height="600">
       <div class="alt-img-badge">✦ ZAVIORA HEALTHCARE</div>
     </div>
-    <!-- Content right green -->
     <div class="alt-content-block green-bg">
       <span class="alt-tag">💫 Confidence Boost</span>
       <h2 class="alt-title">आत्मविश्वास जो<br><span>दिखे और महसूस हो</span></h2>
@@ -1008,10 +294,9 @@
   </div>
 </section>
 
-<!-- SECTION D — Content LEFT (cream bg + 200px mini) · Image RIGHT (full) -->
+<!-- SECTION D — Content LEFT (white bg) · Image RIGHT -->
 <section class="alt-section">
   <div class="alt-row fade-up">
-    <!-- Content left cream with 200px image -->
     <div class="alt-content-block" style="background: white;">
       <span class="alt-tag">🏆 Why Choose Ojas+</span>
       <div class="alt-content-inner-flex">
@@ -1034,7 +319,6 @@
       </ul>
       <a href="#order-form" class="alt-cta">🛒 अभी ऑर्डर करें — ₹1,499</a>
     </div>
-    <!-- Full image right -->
     <div class="alt-img-block">
       <img
         src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=600&fit=crop&auto=format"
@@ -1131,7 +415,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"OJAS + Capsule लेने के बाद मेरी एनर्जी लेवल पहले से काफी बेहतर हो गई है। अब मैं ज्यादा एक्टिव महसूस करता हूँ और ओवरऑल परफॉर्मेंस में भी अच्छा सुधार आया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">A</div>
+          <div class="testi-avatar avatar-a">A</div>
           <div><div class="testi-name">Arun</div><div class="testi-city">📍 Delhi</div></div>
         </div>
       </div>
@@ -1139,7 +423,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"कुछ ही दिनों में अच्छा बदलाव महसूस किया। मेरी स्टैमिना बढ़ी है और अब मुझे ज्यादा आत्मविश्वास महसूस होता है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">P</div>
+          <div class="testi-avatar avatar-p">P</div>
           <div><div class="testi-name">Priya</div><div class="testi-city">📍 Nagpur</div></div>
         </div>
       </div>
@@ -1147,7 +431,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"मेरी बॉडी स्ट्रेंथ बढ़ी है। अब मुझे पहले से ज्यादा एनर्जी महसूस होती है और दैनिक काम करना आसान हो गया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">A</div>
+          <div class="testi-avatar avatar-a">A</div>
           <div><div class="testi-name">Akash</div><div class="testi-city">📍 Delhi</div></div>
         </div>
       </div>
@@ -1155,7 +439,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"इससे मुझे ज्यादा ऊर्जा और आत्मविश्वास महसूस हुआ। मेरे जीवन में सकारात्मक बदलाव आया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">K</div>
+          <div class="testi-avatar avatar-k">K</div>
           <div><div class="testi-name">Kiran</div><div class="testi-city">📍 Purulia</div></div>
         </div>
       </div>
@@ -1163,7 +447,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"मेरी एनर्जी और आत्मविश्वास दोनों में सुधार हुआ है। अब मैं ज्यादा संतुष्ट और एक्टिव महसूस करता हूँ।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">A</div>
+          <div class="testi-avatar avatar-a">A</div>
           <div><div class="testi-name">Asif</div><div class="testi-city">📍 Bhopal</div></div>
         </div>
       </div>
@@ -1171,7 +455,7 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"पूरे दिन ज्यादा एक्टिव महसूस करती हूँ। मेरा तनाव कम हुआ है और सेहत में भी सुधार महसूस हुआ है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar">L</div>
+          <div class="testi-avatar avatar-l">L</div>
           <div><div class="testi-name">Latha</div><div class="testi-city">📍 Kolkata</div></div>
         </div>
       </div>
@@ -1217,6 +501,53 @@
   </div>
 </section>
 
+<hr class="divider">
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="section-tag">अक्सर पूछे जाने वाले प्रश्न</div>
+      <h2 class="section-title">पूछे जाने वाले <span>प्रश्न (FAQs)</span></h2>
+      <p class="section-sub" style="margin:0 auto 0;">OJAS + Capsule के बारे में अपने सभी संशयों को दूर करें</p>
+    </div>
+    <div class="faq-grid fade-up">
+      <div class="faq-item">
+        <button class="faq-question">क्या OJAS + Capsule पूरी तरह से सुरक्षित है?</button>
+        <div class="faq-answer">
+          <p>हाँ, OJAS + Capsule 100% प्राकृतिक जड़ी-बूटियों जैसे अश्वगंधा, सफेद मूसली, शतावरी और गोखरू से बना है। यह GMP और ISO सर्टिफाइड है और इसके कोई साइड इफेक्ट्स नहीं हैं।</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">परिणाम कितने दिनों में दिखने लगते हैं?</button>
+        <div class="faq-answer">
+          <p>इसके परिणाम व्यक्ति-दर-व्यक्ति भिन्न हो सकते हैं, लेकिन अधिकांश ग्राहकों को इसके नियमित उपयोग से पहले 7 से 15 दिनों में ऊर्जा और स्टैमिना में सुधार महसूस होने लगता है। बेहतर और स्थायी परिणामों के लिए 30 से 45 दिनों का पूरा कोर्स करने की सलाह दी जाती है।</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">इसे इस्तेमाल कैसे करना है (Dosage)?</button>
+        <div class="faq-answer">
+          <p>सर्वोत्तम परिणामों के लिए, रोजाना 1 कैप्सूल गुनगुने दूध या पानी के साथ रात को सोने से पहले लें, या अपने चिकित्सक के निर्देशानुसार उपयोग करें।</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">क्या पैकेजिंग गोपनीय (Discreet) होगी?</button>
+        <div class="faq-answer">
+          <p>हाँ, बिल्कुल! आपकी प्राइवेसी हमारे लिए बहुत महत्वपूर्ण है। उत्पाद को एक साधारण, बिना किसी ब्रांड नाम वाले पूरी तरह से सील और गोपनीय बॉक्स में डिलीवर किया जाता है, ताकि आपके अलावा किसी और को पता न चले कि अंदर क्या है।</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">क्या डिलीवरी के लिए कोई अतिरिक्त शुल्क है?</button>
+        <div class="faq-answer">
+          <p>नहीं, पूरे भारत में हमारी होम डिलीवरी बिल्कुल मुफ्त (FREE Delivery) है और आप डिलीवरी के समय ही नकद भुगतान (Cash on Delivery) कर सकते हैं।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- ORDER FORM -->
 <section id="order-form">
   <div class="container">
@@ -1235,7 +566,7 @@
         </div>
         <div class="form-group">
           <label>मोबाइल नंबर *</label>
-          <input type="tel" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" maxlength="10" required>
+          <input type="tel" placeholder="10 अंकों का मोबाइल नंबर" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" required>
         </div>
         <div class="form-group">
           <label>पूरा पता *</label>
@@ -1243,7 +574,7 @@
         </div>
         <div class="form-group">
           <label>PIN / ZIP कोड *</label>
-          <input type="number" placeholder="6 अंकों का PIN कोड" required>
+          <input type="tel" placeholder="6 अंकों का PIN कोड" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" required>
         </div>
         <button type="submit" class="form-submit">✅ ऑर्डर बुक करें — ₹1,499</button>
         <div class="success-msg" id="successMsg">
@@ -1288,58 +619,7 @@
   <a href="#order-form" class="sticky-btn">🛒 ORDER NOW — ₹1,499</a>
 </div>
 
-<script>
-  // === COUNTDOWN TIMER ===
-  let totalSeconds = 29 * 60 + 59;
-  function updateCountdown() {
-    const m = Math.floor(totalSeconds / 60);
-    const s = totalSeconds % 60;
-    document.getElementById('countMin').textContent = String(m).padStart(2,'0');
-    document.getElementById('countSec').textContent = String(s).padStart(2,'0');
-    if (totalSeconds > 0) totalSeconds--;
-    else totalSeconds = 29 * 60 + 59; // reset
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // === SCROLL ANIMATIONS ===
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        // stagger children
-        const children = e.target.querySelectorAll('.fade-up');
-        children.forEach((c, i) => {
-          setTimeout(() => c.classList.add('visible'), i * 100);
-        });
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // === FORM SUBMIT ===
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.textContent = '⏳ बुकिंग हो रही है...';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-      this.reset();
-    }, 1500);
-  });
-
-  // === HIDE STICKY BAR WHEN FORM IN VIEW ===
-  const formSection = document.getElementById('order-form');
-  const stickyBar = document.getElementById('stickyBar');
-  const formObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      stickyBar.style.display = e.isIntersecting ? 'none' : 'flex';
-    });
-  }, { threshold: 0.3 });
-  formObserver.observe(formSection);
-</script>
+<!-- Main Script Reference -->
+<script src="js/main.js"></script>
 </body>
 </html>

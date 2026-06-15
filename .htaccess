@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# 1. Redirect external requests for *.php to clean URL (e.g. admin.php -> admin)
+# Preserves query strings (like ?admin=true) automatically
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# 2. Internally map clean URLs to their corresponding .php files
+# Checks if the file is not a directory and doesn't exist directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
