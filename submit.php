@@ -4,6 +4,7 @@ require_once 'config.php';
 
 // Accept both raw JSON and standard URL-encoded form POST inputs
 $input = json_decode(file_get_contents('php://input'), true);
+
 if (!$input) {
     $input = $_POST;
 }

@@ -7,6 +7,8 @@
   --brown: #3D1F00;
   --green: #2D6A4F;
   --green-light: #52B788;
+  --red: #D90429;
+  --red-light: #EF233C;
   --white: #FFFFFF;
   --shadow: 0 8px 32px rgba(224,123,42,0.18);
 }
@@ -569,6 +571,24 @@ footer {
   text-align: center;
   font-size: 16px; font-weight: 700;
   margin-top: 16px;
+}
+
+/* ── ERROR MESSAGE ── */
+.error-msg {
+  display: none;
+  background: linear-gradient(135deg, var(--red), var(--red-light));
+  color: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 16px; font-weight: 700;
+  margin-top: 16px;
+}
+
+/* ── INVALID INPUT STATE ── */
+.form-group input.invalid {
+  border-color: var(--red) !important;
+  background-color: #FFF5F5 !important;
 }
 
 /* ── SCROLL ANIMATIONS ── */

@@ -92,34 +92,90 @@ document.addEventListener('DOMContentLoaded', () => {
   // === FORM SUBMIT & DATABASE STORAGE ===
   const orderForm = document.getElementById('orderForm');
   if (orderForm) {
+    const nameInput = document.getElementById('orderName');
+    const telInput = document.getElementById('orderPhone');
+    const addressInput = document.getElementById('orderAddress');
+    const pinInput = document.getElementById('orderPin');
+    const errorMsg = document.getElementById('errorMsg');
+    const successMsg = document.getElementById('successMsg');
+
+    // Helper functions for messages
+    function showError(message) {
+      if (errorMsg) {
+        errorMsg.innerHTML = message;
+        errorMsg.style.display = 'block';
+      }
+      if (successMsg) {
+        successMsg.style.display = 'none';
+      }
+    }
+
+    function hideError() {
+      if (errorMsg) {
+        errorMsg.style.display = 'none';
+        errorMsg.innerHTML = '';
+      }
+    }
+
+    // Clear invalid state on typing
+    [nameInput, telInput, addressInput, pinInput].forEach(input => {
+      if (input) {
+        input.addEventListener('input', () => {
+          input.classList.remove('invalid');
+          const anyInvalid = orderForm.querySelectorAll('input.invalid').length > 0;
+          if (!anyInvalid) {
+            hideError();
+          }
+        });
+      }
+    });
+
     orderForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const nameInput = this.querySelector('input[placeholder*="नाम"]');
-      const telInput = this.querySelector('input[type="tel"]');
-      const addressInput = this.querySelector('input[placeholder*="पता"]');
-      const pinInput = this.querySelector('input[placeholder*="PIN"]');
-      
+      hideError();
+      let hasError = false;
+
       // Validate inputs
       const name = nameInput ? nameInput.value.trim() : '';
       const phone = telInput ? telInput.value.trim() : '';
       const address = addressInput ? addressInput.value.trim() : '';
       const pin = pinInput ? pinInput.value.trim() : '';
-      
-      if (!name || !phone || !address || !pin) {
-        alert('कृपया सभी आवश्यक फ़ील्ड भरें।');
+
+      // Highlight empty inputs
+      if (!name) {
+        if (nameInput) nameInput.classList.add('invalid');
+        hasError = true;
+      }
+      if (!phone) {
+        if (telInput) telInput.classList.add('invalid');
+        hasError = true;
+      }
+      if (!address) {
+        if (addressInput) addressInput.classList.add('invalid');
+        hasError = true;
+      }
+      if (!pin) {
+        if (pinInput) pinInput.classList.add('invalid');
+        hasError = true;
+      }
+
+      if (hasError) {
+        showError('कृपया सभी आवश्यक फ़ील्ड भरें।');
         return;
       }
       
-      // Phone format validation
+      // Phone format validation (6-9 followed by 9 digits)
       if (!/^[6-9]\d{9}$/.test(phone)) {
-        alert('कृपया एक वैध 10 अंकों का मोबाइल नंबर दर्ज करें (6-9 से शुरू होने वाला)।');
+        if (telInput) telInput.classList.add('invalid');
+        showError('कृपया एक वैध 10 अंकों का मोबाइल नंबर दर्ज करें (6-9 से शुरू होने वाला)।');
         return;
       }
 
-      // PIN format validation
+      // PIN format validation (6 digits)
       if (!/^\d{6}$/.test(pin)) {
-        alert('कृपया एक वैध 6 अंकों का PIN कोड दर्ज करें।');
+        if (pinInput) pinInput.classList.add('invalid');
+        showError('कृपया एक वैध 6 अंकों का PIN कोड दर्ज करें।');
         return;
       }
 
@@ -130,25 +186,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // AJAX Submit to submit.php
+      const params = new URLSearchParams();
+      params.append('name', name);
+      params.append('phone', phone);
+      params.append('address', address);
+      params.append('pin', pin);
+
       fetch('submit.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({ name, phone, address, pin })
+        body: params
       })
       .then(response => response.json())
       .then(data => {
         if (data.success) {
           if (btn) btn.style.display = 'none';
-          const successMsg = document.getElementById('successMsg');
           if (successMsg) {
             successMsg.innerHTML = data.message;
             successMsg.style.display = 'block';
           }
+          hideError();
           this.reset();
         } else {
-          alert(data.message || 'त्रुटि: ऑर्डर बुक करने में समस्या आई।');
+          showError(data.message || 'त्रुटि: ऑर्डर बुक करने में समस्या आई।');
           if (btn) {
             btn.textContent = '✅ ऑर्डर बुक करें — ₹1,499';
             btn.disabled = false;
@@ -157,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => {
         console.error('Submission error:', error);
-        alert('सर्वर त्रुटि: कृपया इंटरनेट कनेक्शन की जांच करें और पुनः प्रयास करें।');
+        showError('सर्वर त्रुटि: कृपया इंटरनेट कनेक्शन की जांच करें और पुनः प्रयास करें।');
         if (btn) {
           btn.textContent = '✅ ऑर्डर बुक करें — ₹1,499';
           btn.disabled = false;
