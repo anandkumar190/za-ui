@@ -25,6 +25,7 @@
   <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp"> -->
 
   <!-- Fonts & External Stylesheet -->
+   <link rel="icon" type="image/png" href="images/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.2">
 </head>
