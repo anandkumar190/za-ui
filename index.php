@@ -306,13 +306,14 @@
         <div class="alt-content-text">
           <h2 class="alt-title">ऊर्जा जो पूरा दिन<br><span>बनी रहे</span></h2>
           <p class="alt-desc">प्राकृतिक एडाप्टोजेन्स का विशेष मिश्रण जो आपको पूरे दिन ताज़ा और सक्रिय रखता है। कोई कैफीन नहीं, कोई कृत्रिम उत्तेजक नहीं।</p>
-        </div>
-      </div>
       <ul class="alt-points">
         <li>पूरे दिन लगातार ऊर्जा</li>
         <li>मानसिक सतर्कता बढ़ती है</li>
         <li>नींद की गुणवत्ता में सुधार</li>
       </ul>
+        </div>
+      </div>
+  
       <a href="#order-form" class="alt-cta">🛒 ORDER NOW — ₹1,499</a>
     </div>
     <div class="alt-img-block">
