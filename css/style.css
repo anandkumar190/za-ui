@@ -269,7 +269,26 @@ section { padding: 60px 5%; }
   transform: translateY(-4px);
   border-color: var(--gold);
 }
-.herb-emoji { font-size: 40px; margin-bottom: 12px; }
+.herb-img-wrap {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(245,197,66,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.herb-card:hover .herb-img-wrap,
+.herb-card.active .herb-img-wrap {
+  transform: scale(1.08);
+  border-color: var(--gold);
+}
+.herb-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .herb-card h3 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
 .herb-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
@@ -378,6 +397,13 @@ section { padding: 60px 5%; }
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; color: white; font-weight: 800; flex-shrink: 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+.testi-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .testi-avatar.avatar-a { background: linear-gradient(135deg, #e67e22, #f1c40f); }
 .testi-avatar.avatar-p { background: linear-gradient(135deg, #2ecc71, #27ae60); }

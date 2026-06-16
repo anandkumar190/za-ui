@@ -22,11 +22,11 @@
   <!-- <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
   <meta property="twitter:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
-  <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp"> --> --> -->
+  <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp"> -->
 
   <!-- Fonts & External Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1.2">
 </head>
 <body>
 
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="hero-img-wrap">
-      <img src="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp" 
+      <img src="images/hero_doctor.jpg?v=1.1" 
            alt="OJAS + Capsule Doctor Image">
       <div class="hero-stat-row">
         <div class="hero-stat">
@@ -164,42 +164,58 @@
     </div>
     <div class="herbs-grid">
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🌱</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/ashwagandha.jpg" alt="अश्वगंधा" loading="lazy">
+        </div>
         <h3>अश्वगंधा</h3>
         <p>तनाव कम करने, स्टैमिना बढ़ाने और आत्म-विश्वास को बेहतर बनाने में सहायक।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🌾</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/safed_musli.jpg" alt="सफेद मूसली" loading="lazy">
+        </div>
         <h3>सफेद मूसली</h3>
         <p>पुरुष शक्ति, ऊर्जा और प्रदर्शन को सपोर्ट करने के लिए जानी जाती है।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🌿</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/shatavari.jpg" alt="शतावरी" loading="lazy">
+        </div>
         <h3>शतावरी</h3>
         <p>हार्मोन संतुलन, सहनशक्ति और शरीर की स्थिरता को बनाए रखने में सहायक।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🍃</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/siberian_ginseng.jpg" alt="साइबेरियन जिनसेंग" loading="lazy">
+        </div>
         <h3>साइबेरियन जिनसेंग</h3>
         <p>ऊर्जा बढ़ाने, ताकत और लंबे समय तक सक्रिय रहने में मददगार।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🌺</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/gokharu.jpg" alt="गोखरू" loading="lazy">
+        </div>
         <h3>गोखरू</h3>
         <p>पारंपरिक आयुर्वेदिक जड़ी-बूटी, जो पुरुष स्वास्थ्य और शारीरिक ताकत को सपोर्ट करती है।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🍀</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/brahmi.jpg" alt="ब्राह्मी" loading="lazy">
+        </div>
         <h3>ब्राह्मी</h3>
         <p>मानसिक शक्ति, एकाग्रता और आत्म-विश्वास को बेहतर बनाने में सहायक।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">🌰</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/talmakhana.jpg" alt="तालमखाना" loading="lazy">
+        </div>
         <h3>तालमखाना</h3>
         <p>प्राकृतिक स्टैमिना बढ़ाने और शरीर की ताकत को मजबूत करने में मददगार।</p>
       </div>
       <div class="herb-card fade-up">
-        <div class="herb-emoji">💛</div>
+        <div class="herb-img-wrap">
+          <img src="images/herbs/turmeric.jpg" alt="हल्दी (मंजल)" loading="lazy">
+        </div>
         <h3>हल्दी (मंजल)</h3>
         <p>समग्र स्वास्थ्य, शरीर के संतुलन और इम्युनिटी को सपोर्ट करती है।</p>
       </div>
@@ -218,7 +234,7 @@
   <div class="alt-row fade-up">
     <div class="alt-img-block">
       <img
-        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop&auto=format"
+        src="images/strength.jpg"
         alt="शरीर की शक्ति और ऊर्जा"
         width="600" height="600">
       <div class="alt-img-badge">✦ ZAVIORA HEALTHCARE</div>
@@ -245,7 +261,7 @@
       <span class="alt-tag">⚡ Energy & Vitality</span>
       <div class="alt-content-inner-flex">
         <img
-          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop&auto=format"
+          src="images/ingredients_mini.jpg"
           alt="आयुर्वेदिक जड़ी-बूटियां"
           class="alt-mini-img"
           width="200" height="200">
@@ -263,7 +279,7 @@
     </div>
     <div class="alt-img-block">
       <img
-        src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600&h=600&fit=crop&auto=format"
+        src="images/vitality.png"
         alt="ऊर्जा और जीवनशक्ति"
         width="600" height="600">
       <div class="alt-img-badge" style="left:auto;right:20px;">✦ Ojas +</div>
@@ -276,7 +292,7 @@
   <div class="alt-row fade-up">
     <div class="alt-img-block">
       <img
-        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&auto=format"
+        src="images/confidence.png"
         alt="आत्मविश्वास और सफलता"
         width="600" height="600">
       <div class="alt-img-badge">✦ ZAVIORA HEALTHCARE</div>
@@ -303,7 +319,7 @@
       <span class="alt-tag">🏆 Why Choose Ojas+</span>
       <div class="alt-content-inner-flex">
         <img
-          src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop&auto=format"
+          src="images/cer_mini.png"
           alt="ZAVIORA HEALTHCARE सर्टिफिकेशन"
           class="alt-mini-img"
           width="200" height="200">
@@ -323,7 +339,7 @@
     </div>
     <div class="alt-img-block">
       <img
-        src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=600&fit=crop&auto=format"
+        src="images/quality.jpg"
         alt="ZAVIORA HEALTHCARE quality"
         width="600" height="600">
       <div class="alt-img-badge" style="left:auto;right:20px;">✦ Made in India 🇮🇳</div>
@@ -417,7 +433,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"OJAS + Capsule लेने के बाद मेरी एनर्जी लेवल पहले से काफी बेहतर हो गई है। अब मैं ज्यादा एक्टिव महसूस करता हूँ और ओवरऑल परफॉर्मेंस में भी अच्छा सुधार आया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-a">A</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/arun.jpg" alt="Arun">
+          </div>
           <div><div class="testi-name">Arun</div><div class="testi-city">📍 Delhi</div></div>
         </div>
       </div>
@@ -425,7 +443,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"कुछ ही दिनों में अच्छा बदलाव महसूस किया। मेरी स्टैमिना बढ़ी है और अब मुझे ज्यादा आत्मविश्वास महसूस होता है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-p">P</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/priya.jpg" alt="Priya">
+          </div>
           <div><div class="testi-name">Priya</div><div class="testi-city">📍 Nagpur</div></div>
         </div>
       </div>
@@ -433,7 +453,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"मेरी बॉडी स्ट्रेंथ बढ़ी है। अब मुझे पहले से ज्यादा एनर्जी महसूस होती है और दैनिक काम करना आसान हो गया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-a">A</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/akash.jpg" alt="Akash">
+          </div>
           <div><div class="testi-name">Akash</div><div class="testi-city">📍 Delhi</div></div>
         </div>
       </div>
@@ -441,7 +463,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"इससे मुझे ज्यादा ऊर्जा और आत्मविश्वास महसूस हुआ। मेरे जीवन में सकारात्मक बदलाव आया है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-k">K</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/kiran.jpg" alt="Kiran">
+          </div>
           <div><div class="testi-name">Kiran</div><div class="testi-city">📍 Purulia</div></div>
         </div>
       </div>
@@ -449,7 +473,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"मेरी एनर्जी और आत्मविश्वास दोनों में सुधार हुआ है। अब मैं ज्यादा संतुष्ट और एक्टिव महसूस करता हूँ।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-a">A</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/asif.jpg" alt="Asif">
+          </div>
           <div><div class="testi-name">Asif</div><div class="testi-city">📍 Bhopal</div></div>
         </div>
       </div>
@@ -457,7 +483,9 @@
         <div class="stars">★★★★★</div>
         <p class="testi-text">"पूरे दिन ज्यादा एक्टिव महसूस करती हूँ। मेरा तनाव कम हुआ है और सेहत में भी सुधार महसूस हुआ है।"</p>
         <div class="testi-author">
-          <div class="testi-avatar avatar-l">L</div>
+          <div class="testi-avatar">
+            <img src="images/reviews/latha.jpg" alt="Latha">
+          </div>
           <div><div class="testi-name">Latha</div><div class="testi-city">📍 Kolkata</div></div>
         </div>
       </div>
