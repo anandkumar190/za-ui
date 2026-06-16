@@ -74,6 +74,105 @@ if (isset($_GET['action']) && $_GET['action'] === 'export') {
     exit;
 }
 
+// 4. Replace Image / GIF
+if (isset($_POST['action']) && $_POST['action'] === 'replace_image') {
+    if (isset($_POST['target_file']) && isset($_FILES['replacement_file'])) {
+        $target = trim($_POST['target_file']);
+        
+        // Security checks: Must be inside 'images/' and no directory traversal
+        if (strpos($target, 'images/') !== 0 || strpos($target, '..') !== false) {
+            header('Location: admin.php?status=error&msg=' . urlencode('सुरक्षा त्रुटि: अवैध फ़ाइल पथ। (Security Error: Invalid file path.)') . '#media-manager');
+            exit;
+        }
+        
+        if (!file_exists($target)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('त्रुटि: लक्षित फ़ाइल मौजूद नहीं है। (Error: Target file does not exist.)') . '#media-manager');
+            exit;
+        }
+
+        $file = $_FILES['replacement_file'];
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अपलोड त्रुटि कोड: ' . $file['error']) . '#media-manager');
+            exit;
+        }
+
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        if (!in_array($ext, $allowed)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अवैध फ़ाइल प्रकार। केवल JPG, PNG, GIF, WEBP की अनुमति है।') . '#media-manager');
+            exit;
+        }
+
+        $mime = mime_content_type($file['tmp_name']);
+        if (strpos($mime, 'image/') !== 0) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अवैध फ़ाइल प्रकार: यह इमेज नहीं है।') . '#media-manager');
+            exit;
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $target)) {
+            header('Location: admin.php?status=success&msg=' . urlencode('इमेज सफलतापूर्वक बदल दी गई है! (Image successfully replaced!)') . '#media-manager');
+            exit;
+        } else {
+            header('Location: admin.php?status=error&msg=' . urlencode('फ़ाइल सहेजने में विफल।') . '#media-manager');
+            exit;
+        }
+    }
+}
+
+// 5. Upload New Image/GIF
+if (isset($_POST['action']) && $_POST['action'] === 'upload_new') {
+    if (isset($_POST['folder']) && isset($_POST['filename']) && isset($_FILES['new_file'])) {
+        $folder = trim($_POST['folder']);
+        $filename = trim($_POST['filename']);
+        
+        $allowed_folders = ['images/', 'images/benefits/', 'images/herbs/', 'images/reviews/'];
+        if (!in_array($folder, $allowed_folders)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('सुरक्षा त्रुटि: अवैध फ़ोल्डर।') . '#media-manager');
+            exit;
+        }
+        
+        $filename = preg_replace('/[^a-zA-Z0-9_\-]/', '', $filename);
+        if (empty($filename)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('कृपया एक वैध फ़ाइल नाम दर्ज करें।') . '#media-manager');
+            exit;
+        }
+
+        $file = $_FILES['new_file'];
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अपलोड त्रुटि कोड: ' . $file['error']) . '#media-manager');
+            exit;
+        }
+
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        if (!in_array($ext, $allowed)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अवैध फ़ाइल प्रकार। केवल JPG, PNG, GIF, WEBP की अनुमति है।') . '#media-manager');
+            exit;
+        }
+
+        $mime = mime_content_type($file['tmp_name']);
+        if (strpos($mime, 'image/') !== 0) {
+            header('Location: admin.php?status=error&msg=' . urlencode('अवैध फ़ाइल प्रकार: यह इमेज नहीं है।') . '#media-manager');
+            exit;
+        }
+
+        $destination = $folder . $filename . '.' . $ext;
+        
+        if (file_exists($destination)) {
+            header('Location: admin.php?status=error&msg=' . urlencode('यह फ़ाइल पहले से मौजूद है। कृपया दूसरा नाम चुनें या इसे बदलें।') . '#media-manager');
+            exit;
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $destination)) {
+            header('Location: admin.php?status=success&msg=' . urlencode('नई फ़ाइल सफलतापूर्वक अपलोड की गई! (New file successfully uploaded!)') . '#media-manager');
+            exit;
+        } else {
+            header('Location: admin.php?status=error&msg=' . urlencode('फ़ाइल सहेजने में विफल।') . '#media-manager');
+            exit;
+        }
+    }
+}
+
 // === FETCH DATA & STATISTICS ===
 try {
     // Fetch all records
@@ -92,6 +191,87 @@ try {
     $confirmedCount = $confirmedStmt->fetchColumn();
 } catch (PDOException $e) {
     die("Database Query Failed: " . $e->getMessage());
+}
+
+// === MEDIA MANAGEMENT HELPERS ===
+function get_friendly_filesize($bytes) {
+    if ($bytes >= 1048576) {
+        return number_format($bytes / 1048576, 2) . ' MB';
+    } elseif ($bytes >= 1024) {
+        return number_format($bytes / 1024, 1) . ' KB';
+    } else {
+        return $bytes . ' B';
+    }
+}
+
+function get_all_images($dir) {
+    $result = [];
+    if (!is_dir($dir)) return $result;
+    $files = scandir($dir);
+    foreach ($files as $file) {
+        if ($file === '.' || $file === '..') continue;
+        $path = $dir . '/' . $file;
+        if (is_dir($path)) {
+            $result = array_merge($result, get_all_images($path));
+        } else {
+            $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+            if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                $result[] = $path;
+            }
+        }
+    }
+    return $result;
+}
+
+function get_image_details($path) {
+    $size = filesize($path);
+    $friendly_size = get_friendly_filesize($size);
+    $dimensions = 'N/A';
+    $img_info = @getimagesize($path);
+    if ($img_info) {
+        $dimensions = $img_info[0] . 'x' . $img_info[1];
+    }
+    return [
+        'path' => $path,
+        'size' => $friendly_size,
+        'dimensions' => $dimensions,
+        'ext' => strtolower(pathinfo($path, PATHINFO_EXTENSION))
+    ];
+}
+
+// Load and categorize all images
+$all_images = get_all_images('images');
+$media_categories = [
+    'hero' => [
+        'title' => 'मुख्य बैनर और सामान्य चित्र (Hero & General Images / GIFs)',
+        'files' => []
+    ],
+    'herbs' => [
+        'title' => 'जड़ी-बूटियाँ (Herbs Section Images)',
+        'files' => []
+    ],
+    'benefits' => [
+        'title' => 'मुख्य लाभ (Benefits Section Images)',
+        'files' => []
+    ],
+    'reviews' => [
+        'title' => 'सच्ची समीक्षाएं (Customer Review Avatars)',
+        'files' => []
+    ]
+];
+
+foreach ($all_images as $img) {
+    // Normalise slash to forward slash
+    $img_norm = str_replace('\\', '/', $img);
+    if (strpos($img_norm, 'images/herbs/') === 0) {
+        $media_categories['herbs']['files'][] = $img_norm;
+    } elseif (strpos($img_norm, 'images/benefits/') === 0) {
+        $media_categories['benefits']['files'][] = $img_norm;
+    } elseif (strpos($img_norm, 'images/reviews/') === 0) {
+        $media_categories['reviews']['files'][] = $img_norm;
+    } else {
+        $media_categories['hero']['files'][] = $img_norm;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -333,6 +513,235 @@ try {
       body { padding: 15px 3%; }
       th, td { padding: 12px 14px; }
     }
+
+    /* Tab Navigation */
+    .tab-nav {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tab-link {
+      padding: 12px 24px;
+      background: white;
+      border: 1px solid rgba(224,123,42,0.15);
+      border-radius: 10px;
+      color: var(--brown);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+    }
+    .tab-link.active {
+      background: var(--saffron);
+      color: white;
+      border-color: var(--saffron);
+      box-shadow: 0 4px 12px rgba(224,123,42,0.2);
+    }
+    .tab-link:hover:not(.active) {
+      background: #fffdfa;
+      border-color: var(--saffron);
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .alert-success {
+      background: #E8F5E9;
+      color: #1B5E20;
+      border-left: 5px solid #2E7D32;
+    }
+    .alert-error {
+      background: #FFEBEE;
+      color: #C62828;
+      border-left: 5px solid #D32F2F;
+    }
+
+    /* Media Manager Grid */
+    .media-section-title {
+      font-size: 18px;
+      color: var(--brown);
+      margin: 35px 0 15px 0;
+      border-left: 4px solid var(--saffron);
+      padding-left: 10px;
+      font-weight: 700;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .media-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(224,123,42,0.1);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(224,123,42,0.1);
+    }
+    .media-thumb-container {
+      height: 160px;
+      background: #f5f5f5;
+      background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee), 
+                        linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+    }
+    .media-thumb-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    .media-card:hover .media-thumb-container img {
+      transform: scale(1.05);
+    }
+    .media-info {
+      padding: 12px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .media-filename {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 13px;
+      word-break: break-all;
+    }
+    .media-meta {
+      font-size: 11px;
+      color: #8c8c8c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #fdf6ee;
+      border-bottom: 1px solid #fdf6ee;
+      padding: 4px 0;
+    }
+    .media-ext-badge {
+      background: #e8d5be;
+      color: var(--brown);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    /* Upload Styling */
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
+    .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .btn-replace-trigger {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--cream);
+      border: 1px dashed var(--saffron);
+      color: var(--saffron-deep);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-replace-trigger:hover {
+      background: var(--saffron);
+      color: white;
+      border-style: solid;
+    }
+
+    /* Add New Media Form styling */
+    .upload-new-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px dashed var(--saffron);
+      margin-bottom: 30px;
+      box-shadow: 0 4px 16px rgba(224,123,42,0.05);
+    }
+    .upload-new-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      align-items: flex-end;
+    }
+    .form-group-upload {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+    .form-group-upload label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brown);
+    }
+    .form-group-upload input, .form-group-upload select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e8d5be;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .form-group-upload input:focus, .form-group-upload select:focus {
+      border-color: var(--saffron);
+    }
   </style>
 </head>
 <body>
@@ -348,6 +757,14 @@ try {
     <a href="index.php" target="_blank" class="btn btn-secondary">🌐 View Site</a>
   </div>
 </header>
+
+<!-- STATUS ALERTS -->
+<?php if (isset($_GET['status']) && isset($_GET['msg'])): ?>
+  <div class="alert alert-<?= htmlspecialchars($_GET['status']) === 'success' ? 'success' : 'error' ?>">
+    <?= htmlspecialchars($_GET['status']) === 'success' ? '✅' : '❌' ?> 
+    <?= htmlspecialchars($_GET['msg']) ?>
+  </div>
+<?php endif; ?>
 
 <!-- STATS GRID -->
 <div class="stats-grid">
@@ -365,74 +782,153 @@ try {
   </div>
 </div>
 
-<!-- PANEL CARD -->
-<div class="panel-card">
-  <div class="panel-header">
-    <h3>📋 Customer Inquiries List</h3>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="नाम या मोबाइल से खोजें...">
+<!-- TAB NAVIGATION -->
+<div class="tab-nav">
+  <a href="#leads-list" class="tab-link active" data-tab="leads-list">📋 Customer Leads (लीड्स)</a>
+  <a href="#media-manager" class="tab-link" data-tab="media-manager">🖼️ Media Manager (इमेज & GIF)</a>
+</div>
+
+<!-- LEADS TAB CONTENT -->
+<div id="leads-list" class="tab-content active">
+  <div class="panel-card">
+    <div class="panel-header">
+      <h3>📋 Customer Inquiries List</h3>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="नाम या मोबाइल से खोजें...">
+      </div>
     </div>
-  </div>
-  
-  <div class="table-wrap">
-    <table id="leadsTable">
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Date &amp; Time</th>
-          <th>Customer Name</th>
-          <th>Mobile Number</th>
-          <th>Full Address</th>
-          <th>PIN Code</th>
-          <th>Platform</th>
-          <th>Device</th>
-          <th>IP Address</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if (empty($leads)): ?>
+    
+    <div class="table-wrap">
+      <table id="leadsTable">
+        <thead>
           <tr>
-            <td colspan="11" style="text-align: center; padding: 40px; color: #9a7050;">
-              कोई पूछताछ डेटा उपलब्ध नहीं है। (No inquiries found.)
-            </td>
+            <th>Order ID</th>
+            <th>Date &amp; Time</th>
+            <th>Customer Name</th>
+            <th>Mobile Number</th>
+            <th>Full Address</th>
+            <th>PIN Code</th>
+            <th>Platform</th>
+            <th>Device</th>
+            <th>IP Address</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
-        <?php else: ?>
-          <?php foreach ($leads as $row): ?>
+        </thead>
+        <tbody>
+          <?php if (empty($leads)): ?>
             <tr>
-              <td class="ord-id">ORD-<?= $row['id'] ?></td>
-              <td style="white-space: nowrap;"><?= date('d M Y, h:i A', strtotime($row['created_at'])) ?></td>
-              <td class="lead-name"><?= htmlspecialchars($row['name']) ?></td>
-              <td class="lead-phone">
-                <a href="tel:<?= $row['phone'] ?>">📞 <?= htmlspecialchars($row['phone']) ?></a>
-              </td>
-              <td><?= htmlspecialchars($row['address']) ?></td>
-              <td><code><?= htmlspecialchars($row['pin']) ?></code></td>
-              <td><span style="font-weight:600; color:var(--saffron-deep);"><?= htmlspecialchars(isset($row['platform']) ? $row['platform'] : 'Direct / Organic') ?></span></td>
-              <td><?= htmlspecialchars(isset($row['device']) ? $row['device'] : 'Desktop/Laptop') ?></td>
-              <td><small><code><?= htmlspecialchars(isset($row['ip_address']) ? $row['ip_address'] : 'N/A') ?></code></small></td>
-              <td>
-                <span class="badge badge-<?= strtolower($row['status']) ?>">
-                  <?= $row['status'] === 'Pending' ? 'Pending (लंबित)' : ($row['status'] === 'Confirmed' ? 'Confirmed' : 'Cancelled') ?>
-                </span>
-              </td>
-              <td class="actions-cell">
-                <select class="status-select" onchange="changeStatus(<?= $row['id'] ?>, this.value)">
-                  <option value="Pending" <?= $row['status'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
-                  <option value="Confirmed" <?= $row['status'] === 'Confirmed' ? 'selected' : '' ?>>Confirmed</option>
-                  <option value="Cancelled" <?= $row['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
-                </select>
-                <a href="admin.php?action=delete&id=<?= $row['id'] ?>" 
-                   class="action-btn action-btn-delete"
-                   onclick="return confirm('क्या आप सच में इस लीड को हटाना चाहते हैं?')">🗑️</a>
+              <td colspan="11" style="text-align: center; padding: 40px; color: #9a7050;">
+                कोई पूछताछ डेटा उपलब्ध नहीं है। (No inquiries found.)
               </td>
             </tr>
-          <?php endforeach; ?>
-        <?php endif; ?>
-      </tbody>
-    </table>
+          <?php else: ?>
+            <?php foreach ($leads as $row): ?>
+              <tr>
+                <td class="ord-id">ORD-<?= $row['id'] ?></td>
+                <td style="white-space: nowrap;"><?= date('d M Y, h:i A', strtotime($row['created_at'])) ?></td>
+                <td class="lead-name"><?= htmlspecialchars($row['name']) ?></td>
+                <td class="lead-phone">
+                  <a href="tel:<?= $row['phone'] ?>">📞 <?= htmlspecialchars($row['phone']) ?></a>
+                </td>
+                <td><?= htmlspecialchars($row['address']) ?></td>
+                <td><code><?= htmlspecialchars($row['pin']) ?></code></td>
+                <td><span style="font-weight:600; color:var(--saffron-deep);"><?= htmlspecialchars(isset($row['platform']) ? $row['platform'] : 'Direct / Organic') ?></span></td>
+                <td><?= htmlspecialchars(isset($row['device']) ? $row['device'] : 'Desktop/Laptop') ?></td>
+                <td><small><code><?= htmlspecialchars(isset($row['ip_address']) ? $row['ip_address'] : 'N/A') ?></code></small></td>
+                <td>
+                  <span class="badge badge-<?= strtolower($row['status']) ?>">
+                    <?= $row['status'] === 'Pending' ? 'Pending (लंबित)' : ($row['status'] === 'Confirmed' ? 'Confirmed' : 'Cancelled') ?>
+                  </span>
+                </td>
+                <td class="actions-cell">
+                  <select class="status-select" onchange="changeStatus(<?= $row['id'] ?>, this.value)">
+                    <option value="Pending" <?= $row['status'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                    <option value="Confirmed" <?= $row['status'] === 'Confirmed' ? 'selected' : '' ?>>Confirmed</option>
+                    <option value="Cancelled" <?= $row['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                  </select>
+                  <a href="admin.php?action=delete&id=<?= $row['id'] ?>" 
+                     class="action-btn action-btn-delete"
+                     onclick="return confirm('क्या आप सच में इस लीड को हटाना चाहते हैं?')">🗑️</a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
+
+<!-- MEDIA MANAGER TAB CONTENT -->
+<div id="media-manager" class="tab-content">
+  <!-- UPLOAD NEW MEDIA CARD -->
+  <div class="upload-new-card">
+    <h3 style="margin-bottom:15px; color:var(--brown); display:flex; align-items:center; gap:8px;">📤 Upload New Image / GIF</h3>
+    <form action="admin.php" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="action" value="upload_new">
+      <div class="upload-new-grid">
+        <div class="form-group-upload">
+          <label>Destination Folder (फ़ोल्डर)</label>
+          <select name="folder" required>
+            <option value="images/">images/ (Root Folder)</option>
+            <option value="images/benefits/">images/benefits/ (Key Benefits)</option>
+            <option value="images/herbs/">images/herbs/ (Herbs Grid)</option>
+            <option value="images/reviews/">images/reviews/ (Customer Avatars)</option>
+          </select>
+        </div>
+        <div class="form-group-upload">
+          <label>File Name (नाम - e.g. promo_banner)</label>
+          <input type="text" name="filename" placeholder="e.g. promo_banner" required pattern="[a-zA-Z0-9_\-]+">
+        </div>
+        <div class="form-group-upload">
+          <label>Choose File (इमेज या GIF चुनें)</label>
+          <input type="file" name="new_file" accept=".jpg,.jpeg,.png,.gif,.webp" required>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" style="width:100%; height:40px; justify-content:center; gap:6px;">🚀 Upload File</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- CATEGORIZED GALLERY -->
+  <?php foreach ($media_categories as $key => $category): ?>
+    <?php if (!empty($category['files'])): ?>
+      <div class="media-section-title"><?= $category['title'] ?></div>
+      <div class="media-grid">
+        <?php foreach ($category['files'] as $img): ?>
+          <?php $details = get_image_details($img); ?>
+          <div class="media-card">
+            <div class="media-thumb-container">
+              <img src="<?= $img ?>?v=<?= filemtime($img) ?>" alt="<?= basename($img) ?>" loading="lazy">
+            </div>
+            <div class="media-info">
+              <div>
+                <div class="media-filename" title="<?= htmlspecialchars($img) ?>"><?= basename($img) ?></div>
+                <div style="font-size:10px; color:#a0a0a0; word-break:break-all; margin-top:2px;"><?= htmlspecialchars($img) ?></div>
+              </div>
+              <div class="media-meta">
+                <span><?= $details['dimensions'] ?></span>
+                <span><?= $details['size'] ?></span>
+                <span class="media-ext-badge"><?= $details['ext'] ?></span>
+              </div>
+              
+              <!-- Replace Form -->
+              <form action="admin.php" method="POST" enctype="multipart/form-data" style="margin-top:6px;">
+                <input type="hidden" name="action" value="replace_image">
+                <input type="hidden" name="target_file" value="<?= htmlspecialchars($img) ?>">
+                <div class="upload-btn-wrapper">
+                  <button type="button" class="btn-replace-trigger">🔄 Replace File</button>
+                  <input type="file" name="replacement_file" accept=".jpg,.jpeg,.png,.gif,.webp" required onchange="this.form.submit()">
+                </div>
+              </form>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  <?php endforeach; ?>
 </div>
 
 <script>
@@ -461,6 +957,42 @@ try {
   function changeStatus(id, value) {
     window.location.href = `admin.php?action=status&id=${id}&value=${value}`;
   }
+
+  // Tab Switching Logic
+  const tabs = document.querySelectorAll('.tab-link');
+  const contents = document.querySelectorAll('.tab-content');
+
+  function switchTab(tabId) {
+    tabs.forEach(t => t.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+
+    const activeTab = document.querySelector(`.tab-link[data-tab="${tabId}"]`);
+    const activeContent = document.getElementById(tabId);
+
+    if (activeTab && activeContent) {
+      activeTab.classList.add('active');
+      activeContent.classList.add('active');
+      history.replaceState(null, null, '#' + tabId);
+    }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tabId = tab.getAttribute('data-tab');
+      switchTab(tabId);
+    });
+  });
+
+  // Check Hash on Load
+  window.addEventListener('load', () => {
+    const hash = window.location.hash.substring(1);
+    if (hash === 'media-manager' || hash === 'leads-list') {
+      switchTab(hash);
+    } else {
+      switchTab('leads-list');
+    }
+  });
 </script>
 </body>
 </html>

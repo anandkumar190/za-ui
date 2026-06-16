@@ -234,13 +234,22 @@ section { padding: 60px 5%; }
   background: linear-gradient(90deg, var(--saffron), var(--gold));
 }
 .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(224,123,42,0.15); }
-.benefit-icon {
+.benefit-img-wrap {
   width: 56px; height: 56px;
-  background: linear-gradient(135deg, var(--saffron), var(--gold));
   border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
+  overflow: hidden;
   margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border: 2px solid var(--gold);
+  transition: transform 0.3s ease;
+}
+.benefit-card:hover .benefit-img-wrap {
+  transform: scale(1.08);
+}
+.benefit-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .benefit-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--brown); }
 .benefit-card p { font-size: 14px; color: #7a5c3a; line-height: 1.65; }

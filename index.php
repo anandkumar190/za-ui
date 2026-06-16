@@ -119,32 +119,44 @@
     </div>
     <div class="benefits-grid">
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">🔥</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/strength.jpg" alt="शारीरिक शक्ति बढ़ाने में सहायक" loading="lazy">
+        </div>
         <h3>शारीरिक शक्ति बढ़ाने में सहायक</h3>
         <p>नियमित उपयोग से शरीर की मांसपेशियों की ताकत और सहनशक्ति में सकारात्मक सुधार महसूस होता है।</p>
       </div>
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">⚡</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/energy.jpg" alt="लंबे समय तक ऊर्जा बनाए रखने में मदद" loading="lazy">
+        </div>
         <h3>लंबे समय तक ऊर्जा बनाए रखने में मदद</h3>
         <p>प्राकृतिक एडाप्टोजेन्स थकान को दूर करते हैं और पूरे दिन ताज़गी और सक्रियता बनाए रखते हैं।</p>
       </div>
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">🛡️</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/balance.jpg" alt="मानसिक और शारीरिक संतुलन को समर्थन" loading="lazy">
+        </div>
         <h3>मानसिक और शारीरिक संतुलन को समर्थन</h3>
         <p>तनाव को कम करके मानसिक स्पष्टता, आत्म-विश्वास और समग्र स्वास्थ्य में सुधार लाता है।</p>
       </div>
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">💫</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/confidence.jpg" alt="आत्मविश्वास में सुधार" loading="lazy">
+        </div>
         <h3>आत्मविश्वास में सुधार</h3>
         <p>निजी जीवन में आत्मविश्वास और प्रदर्शन को बेहतर बनाने में सहायक — स्वाभाविक और प्रभावशाली।</p>
       </div>
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">❤️</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/circulation.jpg" alt="रक्त संचार बेहतर बनाना" loading="lazy">
+        </div>
         <h3>रक्त संचार बेहतर बनाना</h3>
         <p>जड़ी-बूटियों का संयोजन स्वस्थ रक्त प्रवाह को बढ़ावा देता है और शरीर की प्राकृतिक शक्ति को जागृत करता है।</p>
       </div>
       <div class="benefit-card fade-up">
-        <div class="benefit-icon">🌿</div>
+        <div class="benefit-img-wrap">
+          <img src="images/benefits/natural.jpg" alt="100% प्राकृतिक — Zero Side Effects" loading="lazy">
+        </div>
         <h3>100% प्राकृतिक — Zero Side Effects</h3>
         <p>कोई हानिकारक रसायन नहीं। केवल शुद्ध आयुर्वेदिक जड़ी-बूटियां जो आपके शरीर के साथ काम करती हैं।</p>
       </div>
