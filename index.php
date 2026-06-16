@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="hero-img-wrap">
-      <img src="images/hero_doctor.jpg?v=1.1" 
+      <img src="images/hero_doctor.png?v=1.1" 
            alt="OJAS + Capsule Doctor Image">
       <div class="hero-stat-row">
         <div class="hero-stat">
