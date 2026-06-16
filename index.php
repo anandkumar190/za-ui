@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला</title>
   
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला। 100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य सुधारने के लिए।">
+  <!-- SEO Meta Tags
+  <meta name="description" content="OJAS + Capsule — Zaviora Healthcare ">
   <meta name="keywords" content="Ojas, Ayurvedic Capsule, Mens Health, Stamina, Strength, Ashwagandha, Safed Musli, Zaviora Healthcare">
-  <meta name="author" content="Zaviora Healthcare">
+  <meta name="author" content="Zaviora Healthcare"> -->
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
+  <!-- <meta property="og:type" content="website">
   <meta property="og:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
   <meta property="og:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
-  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
+  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">-->
   
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
+  <!-- <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
   <meta property="twitter:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
-  <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
+  <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp"> --> --> -->
 
   <!-- Fonts & External Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
