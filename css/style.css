@@ -915,7 +915,7 @@ footer {
 /* Small 200px image strip inside content side */
 .alt-mini-img {
   width: 200px;
-  height: 200px;
+  height: 400px;
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 8px 28px rgba(0,0,0,0.18);

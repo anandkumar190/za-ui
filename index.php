@@ -356,22 +356,23 @@
       <span class="alt-tag">🏆 Why Choose Ojas+</span>
       <div class="alt-content-inner-flex">
         <img
-          src="images/cer_mini.png"
+          src="images/certmini.png"
           alt="ZAVIORA HEALTHCARE सर्टिफिकेशन"
           class="alt-mini-img"
-          width="200" height="200">
+          width="200" height="400">
         <div class="alt-content-text">
           <h2 class="alt-title">ZAVIORA HEALTHCARE<br><span>का भरोसा</span></h2>
           <p class="alt-desc">ISO और GMP सर्टिफाइड निर्माण प्रक्रिया। हर कैप्सूल लैब-टेस्टेड और गुणवत्ता-प्रमाणित।</p>
+          <ul class="alt-points">
+            <li>ISO 9001 & GMP सर्टिफाइड फैक्ट्री</li>
+            <li>100% प्राकृतिक — Zero Side Effects</li>
+            <li>गोपनीय पैकिंग में डिलीवरी</li>
+            <li>Cash on Delivery उपलब्ध</li>
+            <li>पूरे भारत में Free Shipping</li>
+          </ul>
         </div>
       </div>
-      <ul class="alt-points">
-        <li>ISO 9001 & GMP सर्टिफाइड फैक्ट्री</li>
-        <li>100% प्राकृतिक — Zero Side Effects</li>
-        <li>गोपनीय पैकिंग में डिलीवरी</li>
-        <li>Cash on Delivery उपलब्ध</li>
-        <li>पूरे भारत में Free Shipping</li>
-      </ul>
+
       <a href="#order-form" class="alt-cta">🛒 अभी ऑर्डर करें — ₹1,499</a>
     </div>
     <div class="alt-img-block">
@@ -398,7 +399,7 @@
         <div class="step-num">1</div>
         <div class="step-days">पहले 7 दिन</div>
         <div class="step-img-wrap">
-          <img src="images/steps/step1.jpg?v=1.0" alt="पहले 7 दिन" loading="lazy">
+          <img src="images/steps/image-1.png?v=1.0" alt="पहले 7 दिन" loading="lazy">
         </div>
         <p>ऊर्जा और ताकत का अनुभव होने लगता है। थकान कम होती है और शरीर अधिक सक्रिय महसूस करता है।</p>
       </div>
@@ -406,7 +407,7 @@
         <div class="step-num">2</div>
         <div class="step-days">15 दिन बाद</div>
         <div class="step-img-wrap">
-          <img src="images/steps/step2.jpg?v=1.0" alt="15 दिन बाद" loading="lazy">
+          <img src="images/steps/image-2.png?v=1.0" alt="15 दिन बाद" loading="lazy">
         </div>
         <p>स्टैमिना और सहनशक्ति बेहतर होने लगती है। आत्मविश्वास में सुधार होता है।</p>
       </div>
@@ -414,7 +415,7 @@
         <div class="step-num">3</div>
         <div class="step-days">30 दिन बाद</div>
         <div class="step-img-wrap">
-          <img src="images/steps/step3.jpg?v=1.0" alt="30 दिन बाद" loading="lazy">
+          <img src="images/steps/image-3.png?v=1.0" alt="30 दिन बाद" loading="lazy">
         </div>
         <p>रक्त संचार बेहतर होता है और शरीर में नई ऊर्जा का अनुभव होता है। शारीरिक प्रदर्शन में स्पष्ट सुधार।</p>
       </div>
@@ -422,7 +423,7 @@
         <div class="step-num">4</div>
         <div class="step-days">45 दिन बाद</div>
         <div class="step-img-wrap">
-          <img src="images/steps/step4.jpg?v=1.0" alt="45 दिन बाद" loading="lazy">
+          <img src="images/steps/image-4.png?v=1.0" alt="45 दिन बाद" loading="lazy">
         </div>
         <p>शरीर अधिक मजबूत, सक्रिय और संतुलित महसूस करता है। संपूर्ण शक्ति और स्टैमिना में बड़ा बदलाव।</p>
       </div>
