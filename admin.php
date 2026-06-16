@@ -125,7 +125,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'upload_new') {
         $folder = trim($_POST['folder']);
         $filename = trim($_POST['filename']);
         
-        $allowed_folders = ['images/', 'images/benefits/', 'images/herbs/', 'images/reviews/'];
+        $allowed_folders = ['images/', 'images/benefits/', 'images/herbs/', 'images/reviews/', 'images/steps/'];
         if (!in_array($folder, $allowed_folders)) {
             header('Location: admin.php?status=error&msg=' . urlencode('सुरक्षा त्रुटि: अवैध फ़ोल्डर।') . '#media-manager');
             exit;
@@ -246,6 +246,10 @@ $media_categories = [
         'title' => 'मुख्य बैनर और सामान्य चित्र (Hero & General Images / GIFs)',
         'files' => []
     ],
+    'steps' => [
+        'title' => 'यह कैसे काम करता है? (Timeline Steps Images)',
+        'files' => []
+    ],
     'herbs' => [
         'title' => 'जड़ी-बूटियाँ (Herbs Section Images)',
         'files' => []
@@ -265,10 +269,12 @@ foreach ($all_images as $img) {
     $img_norm = str_replace('\\', '/', $img);
     if (strpos($img_norm, 'images/herbs/') === 0) {
         $media_categories['herbs']['files'][] = $img_norm;
-    } elseif (strpos($img_norm, 'images/benefits/') === 0) {
+    } elseif (strpos($img_norm, 'images/benefits/') === 0 || $img_norm === 'images/benefits_showcase.gif') {
         $media_categories['benefits']['files'][] = $img_norm;
     } elseif (strpos($img_norm, 'images/reviews/') === 0) {
         $media_categories['reviews']['files'][] = $img_norm;
+    } elseif (strpos($img_norm, 'images/steps/') === 0) {
+        $media_categories['steps']['files'][] = $img_norm;
     } else {
         $media_categories['hero']['files'][] = $img_norm;
     }
@@ -872,6 +878,7 @@ foreach ($all_images as $img) {
           <label>Destination Folder (फ़ोल्डर)</label>
           <select name="folder" required>
             <option value="images/">images/ (Root Folder)</option>
+            <option value="images/steps/">images/steps/ (Timeline Steps)</option>
             <option value="images/benefits/">images/benefits/ (Key Benefits)</option>
             <option value="images/herbs/">images/herbs/ (Herbs Grid)</option>
             <option value="images/reviews/">images/reviews/ (Customer Avatars)</option>

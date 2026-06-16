@@ -214,14 +214,132 @@ section { padding: 60px 5%; }
 }
 
 /* ── BENEFITS ── */
-.benefits-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px; margin-top: 40px;
+.benefits-flex-container {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+  margin-top: 40px;
 }
+.benefits-gif-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.benefits-grid-column {
+  flex: 1.4;
+}
+.benefits-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.gif-mockup-wrapper {
+  width: 100%;
+  max-width: 360px;
+  height: 100%;
+  min-height: 400px;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid rgba(224,123,42,0.15);
+  box-shadow: 0 10px 30px rgba(224,123,42,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+.benefits-showcase-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Animated CSS Placeholder */
+.animated-bottle-showcase {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.showcase-bottle-img {
+  max-height: 280px;
+  width: auto;
+  z-index: 2;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.12));
+  animation: floatBottleAnim 4s ease-in-out infinite;
+}
+.glow-ring {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(224,123,42,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulseGlowAnim 3s ease-in-out infinite;
+}
+
+.benefit-bubble {
+  position: absolute;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(224,123,42,0.2);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--saffron-deep);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  z-index: 3;
+  animation: floatBubbleAnim 5s ease-in-out infinite;
+  white-space: nowrap;
+}
+.bubble-1 { top: 12%; left: 8%; animation-delay: 0s; }
+.bubble-2 { top: 22%; right: 8%; animation-delay: 1.5s; }
+.bubble-3 { bottom: 22%; left: 5%; animation-delay: 3s; }
+.bubble-4 { bottom: 12%; right: 5%; animation-delay: 0.5s; }
+
+@keyframes floatBottleAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulseGlowAnim {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+@keyframes floatBubbleAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 992px) {
+  .benefits-flex-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .gif-mockup-wrapper {
+    min-height: 340px;
+  }
+  .benefits-gif-column, .benefits-grid-column {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .benefits-grid-mini {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 .benefit-card {
   background: white;
   border-radius: 20px;
-  padding: 32px 28px;
+  padding: 9px 5px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   border: 1px solid rgba(224,123,42,0.12);
   transition: transform 0.25s, box-shadow 0.25s;
@@ -242,6 +360,7 @@ section { padding: 60px 5%; }
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   border: 2px solid var(--gold);
   transition: transform 0.3s ease;
+  display: none;
 }
 .benefit-card:hover .benefit-img-wrap {
   transform: scale(1.08);
@@ -355,6 +474,27 @@ section { padding: 60px 5%; }
   color: var(--saffron-deep); margin-bottom: 10px;
 }
 .timeline-step p { font-size: 13px; color: #7a5c3a; line-height: 1.65; }
+.step-img-wrap {
+  width: 100%;
+  height: 130px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border: 3px solid var(--white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background: #fdfbf7;
+}
+.timeline-step:hover .step-img-wrap {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(224,123,42,0.15);
+  border-color: var(--saffron);
+}
+.step-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* ── FEATURES ROW ── */
 .features-row {

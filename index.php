@@ -117,48 +117,73 @@
       <h2 class="section-title">पुरुषों के स्वास्थ्य के लिए<br><span>वैज्ञानिक प्राकृतिक समाधान</span></h2>
       <p class="section-sub">OJAS + Capsule आयुर्वेदिक जड़ी-बूटियों के विशेष मिश्रण से तैयार किया गया है, जो पुरुषों की ताकत, ऊर्जा और रक्त प्रवाह को प्राकृतिक रूप से बेहतर बनाता है।</p>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/strength.jpg" alt="शारीरिक शक्ति बढ़ाने में सहायक" loading="lazy">
+    
+    <div class="benefits-flex-container">
+      <!-- Left side GIF column -->
+      <div class="benefits-gif-column fade-up">
+        <!-- <div class="gif-mockup-wrapper"> -->
+        <div class="  ">
+          <?php if (file_exists('images/benefits_showcase.gif')): ?>
+            <img src="images/benefits_showcase.gif?v=<?= filemtime('images/benefits_showcase.gif') ?>" alt="OJAS+ Benefits Showcase" class="benefits-showcase-gif">
+          <?php else: ?>
+            <div class="animated-bottle-showcase">
+              <div class="glow-ring"></div>
+              <img src="images/image_a5993b34-removebg-preview.png" alt="OJAS+ Bottle" class="showcase-bottle-img">
+              <div class="benefit-bubble bubble-1">शक्ति (Strength)</div>
+              <div class="benefit-bubble bubble-2">ऊर्जा (Energy)</div>
+              <div class="benefit-bubble bubble-3">स्टैमिना (Stamina)</div>
+              <div class="benefit-bubble bubble-4">विश्वास (Confidence)</div>
+            </div>
+          <?php endif; ?>
         </div>
-        <h3>शारीरिक शक्ति बढ़ाने में सहायक</h3>
-        <p>नियमित उपयोग से शरीर की मांसपेशियों की ताकत और सहनशक्ति में सकारात्मक सुधार महसूस होता है।</p>
       </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/energy.jpg" alt="लंबे समय तक ऊर्जा बनाए रखने में मदद" loading="lazy">
+      
+      <!-- Right side benefits grid column -->
+      <div class="benefits-grid-column">
+        <div class="benefits-grid-mini">
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/strength.jpg" alt="शारीरिक शक्ति बढ़ाने में सहायक" loading="lazy">
+            </div>
+            <h3>शारीरिक शक्ति बढ़ाने में सहायक</h3>
+            <p>नियमित उपयोग से शरीर की मांसपेशियों की ताकत और सहनशक्ति में सकारात्मक सुधार महसूस होता है।</p>
+          </div>
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/energy.jpg" alt="लंबे समय तक ऊर्जा बनाए रखने में मदद" loading="lazy">
+            </div>
+            <h3>लंबे समय तक ऊर्जा बनाए रखने में मदद</h3>
+            <p>प्राकृतिक एडाप्टोजेन्स थकान को दूर करते हैं और पूरे दिन ताज़गी और सक्रियता बनाए रखते हैं।</p>
+          </div>
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/balance.jpg" alt="मानसिक और शारीरिक संतुलन को समर्थन" loading="lazy">
+            </div>
+            <h3>मानसिक और शारीरिक संतुलन को समर्थन</h3>
+            <p>तनाव को कम करके मानसिक स्पष्टता, आत्म-विश्वास और समग्र स्वास्थ्य में सुधार लाता है।</p>
+          </div>
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/confidence.jpg" alt="आत्मविश्वास में सुधार" loading="lazy">
+            </div>
+            <h3>आत्मविश्वास में सुधार</h3>
+            <p>निजी जीवन में आत्मविश्वास और प्रदर्शन को बेहतर बनाने में सहायक — स्वाभाविक और प्रभावशाली।</p>
+          </div>
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/circulation.jpg" alt="रक्त संचार बेहतर बनाना" loading="lazy">
+            </div>
+            <h3>रक्त संचार बेहतर बनाना</h3>
+            <p>जड़ी-बूटियों का संयोजन स्वस्थ रक्त प्रवाह को बढ़ावा देता है और शरीर की प्राकृतिक शक्ति को जागृत करता है।</p>
+          </div>
+          <div class="benefit-card fade-up">
+            <div class="benefit-img-wrap">
+              <img src="images/benefits/natural.jpg" alt="100% प्राकृतिक — Zero Side Effects" loading="lazy">
+            </div>
+            <h3>100% प्राकृतिक — Zero Side Effects</h3>
+            <p>कोई हानिकारक रसायन नहीं। केवल शुद्ध आयुर्वेदिक जड़ी-बूटियां जो आपके शरीर के साथ काम करती हैं।</p>
+          </div>
         </div>
-        <h3>लंबे समय तक ऊर्जा बनाए रखने में मदद</h3>
-        <p>प्राकृतिक एडाप्टोजेन्स थकान को दूर करते हैं और पूरे दिन ताज़गी और सक्रियता बनाए रखते हैं।</p>
-      </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/balance.jpg" alt="मानसिक और शारीरिक संतुलन को समर्थन" loading="lazy">
-        </div>
-        <h3>मानसिक और शारीरिक संतुलन को समर्थन</h3>
-        <p>तनाव को कम करके मानसिक स्पष्टता, आत्म-विश्वास और समग्र स्वास्थ्य में सुधार लाता है।</p>
-      </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/confidence.jpg" alt="आत्मविश्वास में सुधार" loading="lazy">
-        </div>
-        <h3>आत्मविश्वास में सुधार</h3>
-        <p>निजी जीवन में आत्मविश्वास और प्रदर्शन को बेहतर बनाने में सहायक — स्वाभाविक और प्रभावशाली।</p>
-      </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/circulation.jpg" alt="रक्त संचार बेहतर बनाना" loading="lazy">
-        </div>
-        <h3>रक्त संचार बेहतर बनाना</h3>
-        <p>जड़ी-बूटियों का संयोजन स्वस्थ रक्त प्रवाह को बढ़ावा देता है और शरीर की प्राकृतिक शक्ति को जागृत करता है।</p>
-      </div>
-      <div class="benefit-card fade-up">
-        <div class="benefit-img-wrap">
-          <img src="images/benefits/natural.jpg" alt="100% प्राकृतिक — Zero Side Effects" loading="lazy">
-        </div>
-        <h3>100% प्राकृतिक — Zero Side Effects</h3>
-        <p>कोई हानिकारक रसायन नहीं। केवल शुद्ध आयुर्वेदिक जड़ी-बूटियां जो आपके शरीर के साथ काम करती हैं।</p>
       </div>
     </div>
   </div>
@@ -246,7 +271,7 @@
   <div class="alt-row fade-up">
     <div class="alt-img-block">
       <img
-        src="images/strength.jpg"
+        src="images/image-2.gif"
         alt="शरीर की शक्ति और ऊर्जा"
         width="600" height="600">
       <div class="alt-img-badge">✦ ZAVIORA HEALTHCARE</div>
@@ -372,21 +397,33 @@
       <div class="timeline-step fade-up">
         <div class="step-num">1</div>
         <div class="step-days">पहले 7 दिन</div>
+        <div class="step-img-wrap">
+          <img src="images/steps/step1.jpg?v=1.0" alt="पहले 7 दिन" loading="lazy">
+        </div>
         <p>ऊर्जा और ताकत का अनुभव होने लगता है। थकान कम होती है और शरीर अधिक सक्रिय महसूस करता है।</p>
       </div>
       <div class="timeline-step fade-up">
         <div class="step-num">2</div>
         <div class="step-days">15 दिन बाद</div>
+        <div class="step-img-wrap">
+          <img src="images/steps/step2.jpg?v=1.0" alt="15 दिन बाद" loading="lazy">
+        </div>
         <p>स्टैमिना और सहनशक्ति बेहतर होने लगती है। आत्मविश्वास में सुधार होता है।</p>
       </div>
       <div class="timeline-step fade-up">
         <div class="step-num">3</div>
         <div class="step-days">30 दिन बाद</div>
+        <div class="step-img-wrap">
+          <img src="images/steps/step3.jpg?v=1.0" alt="30 दिन बाद" loading="lazy">
+        </div>
         <p>रक्त संचार बेहतर होता है और शरीर में नई ऊर्जा का अनुभव होता है। शारीरिक प्रदर्शन में स्पष्ट सुधार।</p>
       </div>
       <div class="timeline-step fade-up">
         <div class="step-num">4</div>
         <div class="step-days">45 दिन बाद</div>
+        <div class="step-img-wrap">
+          <img src="images/steps/step4.jpg?v=1.0" alt="45 दिन बाद" loading="lazy">
+        </div>
         <p>शरीर अधिक मजबूत, सक्रिय और संतुलित महसूस करता है। संपूर्ण शक्ति और स्टैमिना में बड़ा बदलाव।</p>
       </div>
     </div>
