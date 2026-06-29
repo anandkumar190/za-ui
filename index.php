@@ -7,27 +7,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला</title>
   
-  <!-- SEO Meta Tags
+  <!-- SEO Meta Tags-->
   <meta name="description" content="OJAS + Capsule — Zaviora Healthcare ">
   <meta name="keywords" content="Ojas, Ayurvedic Capsule, Mens Health, Stamina, Strength, Ashwagandha, Safed Musli, Zaviora Healthcare">
-  <meta name="author" content="Zaviora Healthcare"> -->
+  <meta name="author" content="Zaviora Healthcare"> 
   
   <!-- Open Graph / Facebook -->
-  <!-- <meta property="og:type" content="website">
+   <meta property="og:type" content="website">
   <meta property="og:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
   <meta property="og:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
-  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">-->
+  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
   
   <!-- Twitter -->
   <!-- <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
-  <meta property="twitter:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
+  <meta property="twitter:description" content="100%  जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
   <meta property="twitter:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp"> -->
 
   <!-- Fonts & External Stylesheet -->
    <link rel="icon" type="image/png" href="images/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1.2">
+
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2035907943671295');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2035907943671295&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+ 
 </head>
 <body>
 
@@ -35,7 +54,7 @@
 <div class="confirm-popup" id="confirmPopup">
   <div class="confirm-card">
     <div class="confirm-logo">🌿</div>
-    <h2>⚠️ महत्वपूर्ण पुष्टि (Verification Required)</h2>
+    <h2>⚠️ महत्वपूर्ण पुष्टि (Verification Required)</h2>प्राकृतिक
     <p>इस वेबसाइट में पुरुषों के स्वास्थ्य और आयुर्वेदिक कल्याण से संबंधित सामग्री है। आगे बढ़ने के लिए कृपया पुष्टि करें कि आपकी आयु 18 वर्ष या उससे अधिक है।</p>
     <div class="confirm-buttons">
       <button class="confirm-btn yes" id="confirmYesBtn">हाँ, मेरी आयु 18+ है</button>
