@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
+             fbq('track', 'Lead');
           if (btn) btn.style.display = 'none';
           if (successMsg) {
             successMsg.innerHTML = data.message;
