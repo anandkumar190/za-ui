@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="css/style.css?v=1.2">
 
   <!-- Meta Pixel Code -->
-<!-- <script>
+<script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -41,14 +41,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2035907943671295');
 fbq('track', 'PageView');
-</script> -->
+</script>
 
-<!-- <noscript><img height="1" width="1" style="display:none"
+<noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2035907943671295&ev=PageView&noscript=1"
-/></noscript> -->
-<!-- End Meta Pixel Code -->
+/></noscript> 
+<!-- End Meta Pixel Code-->
 
-<script>
+<!-- <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -66,7 +66,7 @@ s.parentNode.insertBefore(t,s);
 
 fbq('init', '2035907943671295');
 fbq('track', 'PageView');
-</script>
+</script> -->
  
 </head>
 <body>
