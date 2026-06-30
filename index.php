@@ -16,7 +16,6 @@
    <meta property="og:type" content="website">
   <meta property="og:title" content="OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला">
   <meta property="og:description" content="100% प्राकृतिक जड़ी-बूटियों से निर्मित शारीरिक ताकत, ऊर्जा और पुरुष स्वास्थ्य को प्राकृतिक रूप से बेहतर बनाने के लिए।">
-  <meta property="og:image" content="https://wellnesspulsee.shop/wp-content/uploads/2026/03/dr-e1772539874316-1.webp">
   
   <!-- Twitter -->
   <!-- <meta property="twitter:card" content="summary_large_image">
