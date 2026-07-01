@@ -8,6 +8,7 @@
   <title>OJAS + Capsule — भारत का नंबर 1 आयुर्वेदिक फॉर्मूला</title>
   
   <!-- SEO Meta Tags-->
+   <meta name="facebook-domain-verification" content="rw5i4i4q6wy9dugluauaslvk51dsjf" />
   <meta name="description" content="OJAS + Capsule — Zaviora Healthcare ">
   <meta name="keywords" content="Ojas, Ayurvedic Capsule, Mens Health, Stamina, Strength, Ashwagandha, Safed Musli, Zaviora Healthcare">
   <meta name="author" content="Zaviora Healthcare"> 
@@ -29,7 +30,7 @@
   <link rel="stylesheet" href="css/style.css?v=1.2">
 
   <!-- Meta Pixel Code -->
-<script>
+<!-- <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -44,7 +45,7 @@ fbq('track', 'PageView');
 
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2035907943671295&ev=PageView&noscript=1"
-/></noscript> 
+/></noscript>  -->
 <!-- End Meta Pixel Code-->
 
 <!-- <script>
