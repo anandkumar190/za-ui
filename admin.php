@@ -377,7 +377,7 @@ foreach ($all_images as $img) {
       font-family: 'Noto Sans Devanagari', sans-serif;
       background: var(--cream);
       color: var(--dark);
-      padding: 30px 5%;
+      padding: 30px 1.5%;
     }
 
     header {
@@ -586,7 +586,7 @@ foreach ($all_images as $img) {
     }
 
     @media (max-width: 768px) {
-      body { padding: 15px 3%; }
+      body { padding: 15px 1%; }
       th, td { padding: 12px 14px; }
     }
 

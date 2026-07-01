@@ -1,7 +1,7 @@
 <?php
 define('DB_HOST', 'localhost');
-define('DB_USER', 'za-user');
-define('DB_PASS', 'Anand@123!');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'zaviora_db');
 
 try {
