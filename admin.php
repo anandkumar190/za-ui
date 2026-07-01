@@ -46,6 +46,33 @@ if (isset($_GET['action']) && $_GET['action'] === 'status' && isset($_GET['id'])
 
 // 3. Export CSV
 if (isset($_GET['action']) && $_GET['action'] === 'export') {
+    $startDate = isset($_GET['start_date']) ? trim($_GET['start_date']) : '';
+    $endDate = isset($_GET['end_date']) ? trim($_GET['end_date']) : '';
+    
+    if ($startDate && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $startDate)) {
+        $startDate = '';
+    }
+    if ($endDate && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $endDate)) {
+        $endDate = '';
+    }
+    
+    $whereClauses = [];
+    $params = [];
+    
+    if ($startDate) {
+        $whereClauses[] = "created_at >= :start_date";
+        $params[':start_date'] = $startDate . ' 00:00:00';
+    }
+    if ($endDate) {
+        $whereClauses[] = "created_at <= :end_date";
+        $params[':end_date'] = $endDate . ' 23:59:59';
+    }
+    
+    $whereSQL = "";
+    if (!empty($whereClauses)) {
+        $whereSQL = " WHERE " . implode(" AND ", $whereClauses);
+    }
+
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=ojas_leads_' . date('Ymd_His') . '.csv');
     $output = fopen('php://output', 'w');
@@ -54,7 +81,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'export') {
     
     fputcsv($output, ['Order ID', 'Date & Time', 'Name', 'Phone', 'Address', 'PIN Code', 'Platform', 'Device', 'IP Address', 'User Agent', 'Status']);
     
-    $stmt = $pdo->query("SELECT * FROM inquiries ORDER BY id DESC");
+    $stmt = $pdo->prepare("SELECT * FROM inquiries" . $whereSQL . " ORDER BY id DESC");
+    $stmt->execute($params);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         fputcsv($output, [
             'ORD-' . $row['id'],
@@ -174,13 +202,45 @@ if (isset($_POST['action']) && $_POST['action'] === 'upload_new') {
 }
 
 // === FETCH DATA & STATISTICS ===
+$startDate = '';
+$endDate = '';
+
 try {
-    // Fetch all records
-    $stmt = $pdo->query("SELECT * FROM inquiries ORDER BY id DESC");
+    $startDate = isset($_GET['start_date']) ? trim($_GET['start_date']) : '';
+    $endDate = isset($_GET['end_date']) ? trim($_GET['end_date']) : '';
+    
+    if ($startDate && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $startDate)) {
+        $startDate = '';
+    }
+    if ($endDate && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $endDate)) {
+        $endDate = '';
+    }
+    
+    $whereClauses = [];
+    $params = [];
+    
+    if ($startDate) {
+        $whereClauses[] = "created_at >= :start_date";
+        $params[':start_date'] = $startDate . ' 00:00:00';
+    }
+    if ($endDate) {
+        $whereClauses[] = "created_at <= :end_date";
+        $params[':end_date'] = $endDate . ' 23:59:59';
+    }
+    
+    $whereSQL = "";
+    if (!empty($whereClauses)) {
+        $whereSQL = " WHERE " . implode(" AND ", $whereClauses);
+    }
+
+    // Fetch filtered records
+    $stmt = $pdo->prepare("SELECT * FROM inquiries" . $whereSQL . " ORDER BY id DESC");
+    $stmt->execute($params);
     $leads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Total Count
-    $totalCount = count($leads);
+    // Total Count (Overall database statistics)
+    $totalStmt = $pdo->query("SELECT COUNT(*) FROM inquiries");
+    $totalCount = $totalStmt->fetchColumn();
 
     // Today's Count
     $todayStmt = $pdo->query("SELECT COUNT(*) FROM inquiries WHERE DATE(created_at) = CURDATE()");
@@ -191,6 +251,15 @@ try {
     $confirmedCount = $confirmedStmt->fetchColumn();
 } catch (PDOException $e) {
     die("Database Query Failed: " . $e->getMessage());
+}
+
+// Define export URL with filters
+$exportUrl = "admin.php?action=export";
+if (!empty($startDate)) {
+    $exportUrl .= "&start_date=" . urlencode($startDate);
+}
+if (!empty($endDate)) {
+    $exportUrl .= "&end_date=" . urlencode($endDate);
 }
 
 // === MEDIA MANAGEMENT HELPERS ===
@@ -760,7 +829,7 @@ foreach ($all_images as $img) {
     <p>ZAVIORA HEALTHCARE LEAD MANAGEMENT PANEL</p>
   </div>
   <div class="header-actions">
-    <a href="admin.php?action=export" class="btn btn-primary">📥 Export CSV (.csv)</a>
+    <a href="<?= $exportUrl ?>" class="btn btn-primary">📥 Export CSV (.csv)</a>
     <a href="index.php" target="_blank" class="btn btn-secondary">🌐 View Site</a>
   </div>
 </header>
@@ -787,6 +856,12 @@ foreach ($all_images as $img) {
     <div class="label">Confirmed Orders (स्वीकृत)</div>
     <div class="value"><?= $confirmedCount ?></div>
   </div>
+  <?php if (!empty($startDate) || !empty($endDate)): ?>
+    <div class="stat-card" style="border: 1px solid rgba(45, 106, 79, 0.3); background: #f4faf7;">
+      <div class="label" style="color: var(--green);">Filtered Inquiries (फ़िल्टर की गई लीड्स)</div>
+      <div class="value" style="color: var(--green);"><?= count($leads) ?></div>
+    </div>
+  <?php endif; ?>
 </div>
 
 <!-- TAB NAVIGATION -->
@@ -798,11 +873,31 @@ foreach ($all_images as $img) {
 <!-- LEADS TAB CONTENT -->
 <div id="leads-list" class="tab-content active">
   <div class="panel-card">
-    <div class="panel-header">
-      <h3>📋 Customer Inquiries List</h3>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="नाम या मोबाइल से खोजें...">
+    <div class="panel-header" style="flex-direction: column; align-items: stretch; gap: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <h3>📋 Customer Inquiries List</h3>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="नाम या मोबाइल से खोजें...">
+        </div>
       </div>
+      
+      <!-- Date Filter Form -->
+      <form method="GET" action="admin.php" class="filter-form" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; background: #fffcf8; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(224,123,42,0.15); margin-top: 8px; width: 100%;">
+        <div class="filter-group" style="display: flex; flex-direction: column; gap: 6px; min-width: 150px; flex: 1 1 0;">
+          <label for="start_date" style="font-size: 13px; font-weight: 700; color: var(--brown);">प्रारंभ तिथि (Start Date)</label>
+          <input type="date" id="start_date" name="start_date" value="<?= htmlspecialchars($startDate) ?>" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #e8d5be; font-family: inherit; font-size: 13px; outline: none; background: white; width: 100%;">
+        </div>
+        <div class="filter-group" style="display: flex; flex-direction: column; gap: 6px; min-width: 150px; flex: 1 1 0;">
+          <label for="end_date" style="font-size: 13px; font-weight: 700; color: var(--brown);">अंतिम तिथि (End Date)</label>
+          <input type="date" id="end_date" name="end_date" value="<?= htmlspecialchars($endDate) ?>" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #e8d5be; font-family: inherit; font-size: 13px; outline: none; background: white; width: 100%;">
+        </div>
+        <div class="filter-actions" style="display: flex; gap: 10px; align-items: center; justify-content: flex-start;">
+          <button type="submit" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; height: 38px;">🔍 Apply Filter (फ़िल्टर करें)</button>
+          <?php if (!empty($startDate) || !empty($endDate)): ?>
+            <a href="admin.php" class="btn btn-secondary" style="padding: 10px 20px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; height: 38px; color: var(--red); border-color: rgba(201,59,43,0.2);">❌ Clear Filter (साफ़ करें)</a>
+          <?php endif; ?>
+        </div>
+      </form>
     </div>
     
     <div class="table-wrap">
