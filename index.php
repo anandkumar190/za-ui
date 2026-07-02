@@ -30,8 +30,6 @@
   <link rel="stylesheet" href="css/style.css?v=1.2">
 
 <!-- Meta Pixel Code -->
-<!-- Meta Pixel Code -->
-<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -48,10 +46,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<!-- End Meta Pixel Code -->
-<!-- End Meta Pixel Code -->
 
-<!-- End Meta Pixel Code -->
  
 </head>
 <body>
@@ -148,7 +143,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
       <!-- Left side GIF column -->
       <div class="benefits-gif-column fade-up">
         <!-- <div class="gif-mockup-wrapper"> -->
-        <!-- <div class="  ">
+        <div class="  ">
           <?php if (file_exists('images/benefits_showcase.gif')): ?>
             <img src="images/benefits_showcase.gif?v=<?= filemtime('images/benefits_showcase.gif') ?>" alt="OJAS+ Benefits Showcase" class="benefits-showcase-gif">
           <?php else: ?>
@@ -161,7 +156,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
               <div class="benefit-bubble bubble-4">विश्वास (Confidence)</div>
             </div>
           <?php endif; ?>
-        </div> -->
+        </div>
       </div>
       
       <!-- Right side benefits grid column -->
@@ -293,7 +288,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
 
 <!-- ALTERNATING IMAGE FEATURE SECTIONS -->
 <!-- SECTION A — Image LEFT · Content RIGHT (dark bg) -->
-<!-- <section class="alt-section">
+<section class="alt-section">
   <div class="alt-row fade-up">
     <div class="alt-img-block">
       <img
@@ -315,10 +310,10 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
       <a href="#order-form" class="alt-cta">🛒 अभी ऑर्डर करें</a>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- SECTION B — Content LEFT (warm bg) · Image RIGHT -->
-<!-- <section class="alt-section">
+<section class="alt-section">
   <div class="alt-row fade-up">
     <div class="alt-content-block warm-bg">
       <span class="alt-tag">⚡ Energy & Vitality</span>
@@ -349,10 +344,10 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
       <div class="alt-img-badge" style="left:auto;right:20px;">✦ Ojas +</div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- SECTION C — Image LEFT · Content RIGHT (green bg) -->
-<!-- <section class="alt-section">
+<section class="alt-section">
   <div class="alt-row fade-up">
     <div class="alt-img-block">
       <img
@@ -374,7 +369,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
       <a href="#order-form" class="alt-cta">🛒 अभी शुरू करें</a>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- SECTION D — Content LEFT (white bg) · Image RIGHT -->
 <section class="alt-section">
@@ -415,7 +410,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
 <hr class="divider">
 
 <!-- TIMELINE -->
-<!-- <section class="timeline-section">
+<section class="timeline-section">
   <div class="container">
     <div class="fade-up" style="text-align:center;">
       <div class="section-tag">यह कैसे काम करता है?</div>
@@ -456,7 +451,7 @@ src="https://www.facebook.com/tr?id=1030373859409592&ev=PageView&noscript=1"
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- WHY CHOOSE US -->
 <section>
