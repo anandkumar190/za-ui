@@ -243,14 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-             fbq('track', 'Lead');
-          if (btn) btn.style.display = 'none';
-          if (successMsg) {
-            successMsg.innerHTML = data.message;
-            successMsg.style.display = 'block';
+          fbq('track', 'Lead');
+          try {
+            sessionStorage.setItem('ordered_name', name);
+          } catch (e) {
+            console.warn('sessionStorage is blocked:', e);
           }
-          hideError();
-          this.reset();
+          window.location.href = 'thankyou.php';
         } else {
           showError(data.message || 'त्रुटि: ऑर्डर बुक करने में समस्या आई।');
           if (btn) {
@@ -282,25 +281,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmNoBtn = document.getElementById('confirmNoBtn');
 
   if (confirmPopup && confirmYesBtn && confirmNoBtn) {
-    let isConfirmed = 'false';
-    try {
-      isConfirmed = localStorage.getItem('ojas_age_confirmed');
-    } catch (e) {
-      console.warn('localStorage is blocked:', e);
-    }
-
-    if (isConfirmed === 'true') {
-      confirmPopup.classList.add('hidden');
-    } else {
-      document.body.classList.add('modal-open');
-    }
+    // Always open on load, do not check localStorage
+    document.body.classList.add('modal-open');
 
     confirmYesBtn.addEventListener('click', () => {
-      try {
-        localStorage.setItem('ojas_age_confirmed', 'true');
-      } catch (e) {
-        console.warn('localStorage is blocked:', e);
-      }
+      // Just close the popup, do not save confirmation in localStorage
       confirmPopup.classList.add('hidden');
       document.body.classList.remove('modal-open');
     });
